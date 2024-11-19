@@ -1,0 +1,30 @@
+- [ ] incomplete task
+- [x] completed task
+PROJECT:
+- Calisthenic skills progression site
+
+GOALS:
+- Light and dark theme
+- 100 total exercises\
+- 10 total progressions 
+        One Arm Push-Up
+        Strict muscle up
+        Full Planche
+        One Arm Pull-Up
+        Clapping handstand push up
+        Weighted pistol squat
+        Front lever
+        back lever
+        Full one arm handstand
+        Dragon flag
+
+- ability to add more if you are an admin
+- ability to delete if you are an admin
+
+TODO:
+[x] - create skills table
+[x] - create skills category
+[ ] - create skills table
+[ ] - create skills table
+[ ] - create skills table
+[ ] - create skills table
