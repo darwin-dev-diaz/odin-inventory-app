@@ -4,9 +4,73 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/output.css" />
-    <title>Calisthenics on fire</title>
+    <link rel="stylesheet" href="/css/index.css" />
+    <title>Calisthenics zone</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+      body {
+        background-color: #0f140f;
+        /* opacity: 0.25; */
+        background-image: radial-gradient(#007a021a 1px, transparent 1px),
+          radial-gradient(#007a021a 1px, #0f140f 1px);
+        background-size: 10px 10px;
+        background-position: 0 0, 20px 2px;
+        font-family: "VT323", monospace;
+        color: white;
+      }
+    </style>
   </head>
-  <body>
-    <div class="bg-black h-96">Test</div>
+  <body class="">
+    <div
+      class="CONTENT z-40 p-[1.75rem] flex flex-col justify-center items-center md:items-start"
+    >
+      <div class="md:ml-40">
+        <h1
+          class="bg-opacity-80 text-black md:text-7xl text-5xl bold uppercase text-center mb-9 rounded-sm"
+        >
+          <span class="MatrixTextEffect">Calisthenics zone</span>
+        </h1>
+        <div
+          class="relative LINKS flex flex-col text-4xl md:text-5xl justify-center items-start gap-5"
+        >
+          <button class="relative custom-btn btn-3">
+            <span class="MatrixTextEffectWhite px-2">
+              <a href="/exercises">Exercise</a>
+              <p class="absolute top-0 left-[-2rem] hidden md:block">0</p>
+            </span>
+          </button>
+          <button class="relative custom-btn btn-3">
+            <span class="MatrixTextEffectWhite px-2">
+              <a href="">Progression</a>
+              <p class="absolute top-0 left-[-2rem] hidden md:block">1</p>
+            </span>
+          </button>
+          <button class="relative custom-btn btn-3">
+            <span class="MatrixTextEffectWhite px-2">
+              <a href="">Category</a>
+              <p class="absolute top-0 left-[-2rem] hidden md:block">2</p>
+            </span>
+          </button>
+          <button class="relative custom-btn btn-3">
+            <span class="MatrixTextEffectWhite px-2">
+              <a href="">Difficulty</a>
+              <p class="absolute top-0 left-[-2rem] hidden md:block">3</p>
+            </span>
+          </button>
+          <button class="relative custom-btn btn-3">
+            <span class="MatrixTextEffectWhite px-2">
+              <a href="">About</a>
+              <p class="absolute top-0 left-[-2rem] hidden md:block">4</p>
+            </span>
+          </button>
+          <button class="relative custom-btn btn-3">
+            <span class="MatrixTextEffectWhite px-2">
+              <a href="">Add Exercise</a>
+              <p class="absolute top-0 left-[-2rem] hidden md:block">5</p>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
