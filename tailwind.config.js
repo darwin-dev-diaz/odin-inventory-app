@@ -3,6 +3,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        hack: {
+          greenTrans: "#7de17dbf",
+          green: "#7de17d",
+        },
         darkPrimary: {
           a0: "#007a02",
           a10: "#348929",
