@@ -586,16 +586,12 @@ video {
   display: none;
 }
 
-.h-screen {
-  height: 100vh;
-}
-
-.h-8 {
-  height: 2rem;
-}
-
 .h-12 {
   height: 3rem;
+}
+
+.h-screen {
+  height: 100vh;
 }
 
 .w-screen {
@@ -622,6 +618,18 @@ video {
   gap: 1.25rem;
 }
 
+.gap-3 {
+  gap: 0.75rem;
+}
+
+.gap-9 {
+  gap: 2.25rem;
+}
+
+.gap-96 {
+  gap: 24rem;
+}
+
 .rounded-sm {
   border-radius: 0.125rem;
 }
@@ -642,6 +650,14 @@ video {
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}
+
+.pt-5 {
+  padding-top: 1.25rem;
+}
+
+.pt-3 {
+  padding-top: 0.75rem;
 }
 
 .text-center {
@@ -751,6 +767,13 @@ video {
   color: #7de17dbf;
   font-family: "VT323", monospace;
   text-shadow: 0 0 5px rgba(125, 225, 125, 0.5), 0 0 15px rgba(125, 250, 125, 1);
+}
+
+.MatrixTextEffectSVG {
+  fill: #7de17dbf;
+  font-family: "VT323", monospace;
+  /* filter: drop-shadow(0 0 5px rgba(125, 225, 125, 0.5)); */
+  filter: drop-shadow(0 0 15px rgba(125, 250, 125, 1));
 }
 
 .MatrixTextEffectWhite {
@@ -875,18 +898,13 @@ video {
     align-items: flex-start;
   }
 
-  .md\:px-2 {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+  .md\:text-5xl {
+    font-size: 3rem;
+    line-height: 1;
   }
 
   .md\:text-7xl {
     font-size: 4.5rem;
-    line-height: 1;
-  }
-
-  .md\:text-5xl {
-    font-size: 3rem;
     line-height: 1;
   }
 }
