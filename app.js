@@ -5,6 +5,7 @@ const testRoute = require("./routes/test.route");
 const homeRoute = require("./routes/home.route");
 const exercisesRoute = require("./routes/exercises.route");
 const exerciseRoute = require("./routes/exercise.route");
+const progressionsRoute = require("./routes/progressions.route");
 require("dotenv").config();
 
 //  view stuff
@@ -20,6 +21,7 @@ app.use("/test", testRoute);
 app.use("/", homeRoute);
 app.use("/exercises", exercisesRoute);
 app.use("/exercise", exerciseRoute);
+app.use("/progressions", progressionsRoute);
 
 app.listen(process.env.PORT, () => {
   console.log("Listening on port " + process.env.PORT);
