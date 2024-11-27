@@ -562,6 +562,10 @@ video {
   position: relative;
 }
 
+.sticky {
+  position: sticky;
+}
+
 .left-\[-2rem\] {
   left: -2rem;
 }
@@ -699,6 +703,10 @@ video {
 
 .max-w-72 {
   max-width: 18rem;
+}
+
+.max-w-96 {
+  max-width: 24rem;
 }
 
 .max-w-\[26\.5rem\] {
@@ -1384,6 +1392,10 @@ video {
     max-width: 36rem;
   }
 
+  .md\:max-w-6xl {
+    max-width: 72rem;
+  }
+
   .md\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -1398,6 +1410,10 @@ video {
 
   .md\:items-start {
     align-items: flex-start;
+  }
+
+  .md\:gap-9 {
+    gap: 2.25rem;
   }
 
   .md\:overflow-hidden {

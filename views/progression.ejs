@@ -23,9 +23,18 @@
   <body class="">
     <%- include('./components/header.ejs') %>
     <div
-      class="CONTENT z-40 p-[1.75rem] flex flex-col justify-center items-center md:items-start mx-auto px-5 lg:flex-row md:mt-14 lg:gap-9 lg:max-w-6xl"
+      class="CONTENT z-40 p-[1.75rem] flex flex-col justify-center items-center md:items-start mx-auto px-5 md:flex-row md:mt-14 md:gap-9 md:max-w-6xl"
     >
-      <h1>Hand stand push up progression</h1>
+      <h1 class="MatrixTextEffect text-4xl mb-8 md:text-5xl">
+        Hand stand push up progression
+      </h1>
+      <div class="w-full flex flex-col gap-4 max-w-96">
+        <%- include('./components/progressionPageComponent.ejs', {text: "Step 3: Push Up"})
+        %> <%- include('./components/progressionPageComponent.ejs' , {text:
+        "Step 3: Push Up"}) %> <%- include('./components/progressionPageComponent.ejs' ,
+        {text: "Step 3: Push Up"}) %> 
+        <%- include('./components/progressionPageComponent.ejs' , {text: "Step 3: Push Up"}) %>
+      </div>
     </div>
   </body>
 </html>
