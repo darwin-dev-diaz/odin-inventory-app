@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/output.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <title>Exercise | Calisthenics zone</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+      body {
+        background-color: #0f140f;
+        /* opacity: 0.25; */
+        background-image: radial-gradient(#007a021a 1px, transparent 1px),
+          radial-gradient(#007a021a 1px, #0f140f 1px);
+        background-size: 10px 10px;
+        background-position: 0 0, 20px 2px;
+        font-family: "VT323", monospace;
+        color: white;
+      }
+    </style>
+  </head>
+  <body class="md:h-screen md:overflow-hidden">
+    <%- include('./components/header.ejs') %>
+    <div
+      class="CONTENT z-40 p-[1.75rem] flex flex-col justify-center items-center mx-auto px-5 max-w-xl md:max-w-4xl md:flex-row md: gap-8 md:items-start"
+    >
+      <div class="max-w-md justify-self-stretch w-full">
+        <div class="flex w-full gap-1 mb-2">
+          <div
+            class="w-fit h-fit text-xl px-2 py-1 ShoulderTag bg-opacity-20 mb MatrixTextEffectWhiteLow"
+          >
+            Shoulders
+          </div>
+          <div
+            class="w-fit h-fit text-xl px-2 py-1 ArmTag bg-opacity-20 MatrixTextEffectWhiteLow"
+          >
+            Arms
+          </div>
+        </div>
+        <div
+          class="w-full aspect-square MatrixBoxEffectGrey bg-darkSurface-a30 bg-opacity-30 mb-3 justify-self-center md:max-w-md"
+        ></div>
+        <p
+          class="max-w-xl w-full h-fit MatrixBoxEffectGrey bg-darkSurface-a30 bg-opacity-30 text-3xl p-3 MatrixTextEffectWhiteLow EasyTag"
+        >
+          Hand stand push up
+        </p>
+      </div>
+
+      <div class="md:mt-11 md:h-[80vh] overflow-y-auto">
+        <p
+          class="max-w-xl w-full h-fit MatrixBoxEffectGrey bg-darkSurface-a30 bg-opacity-30 text-lg p-3 MatrixTextEffectWhiteLow tracking-wider mb-11 lg:text-xl"
+        >
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor
+          officia facere enim blanditiis quisquam, quaerat eveniet, expedita
+          aliquid dignissimos quo consequatur consectetur ab quos inventore
+          totam, laudantium dolorem molestias eligendi
+        </p>
+
+        <iframe
+          class="w-full h-96 mb-7"
+          src="https://www.youtube.com/embed/tgbNymZ7vqY"
+        >
+        </iframe>
+
+        <div class="w-full flex flex-col gap-3 mb-11">
+          <button
+            class="w-full h-9 md:h-12 MatrixBoxEffectWhiteLow relative items-center DeleteButton text-center MatrixTextEffectWhiteLow text-2xl cursor-pointer"
+          >
+            Delete Exercise
+          </button>
+          <button
+            class="w-full h-9 md:h-12 EditButton relative items-center text-center MatrixTextEffectWhiteLow text-2xl cursor-pointer"
+          >
+            Edit Exercise
+          </button>
+        </div>
+
+        <div
+          class="flex MatrixBoxEffectGrey w-full bg-darkSurface-a30 bg-opacity-30 items-center cursor-pointer"
+        >
+          <div class="bg-black w-[35%] aspect-square"></div>
+          <div class="flex flex-col w-[65%] justify-center items-center">
+            <p class="MatrixTextEffectWhiteLow text-3xl">Prerequisite:</p>
+            <p class="MatrixTextEffectWhiteLow text-2xl">Exercise name</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
