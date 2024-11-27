@@ -3,6 +3,7 @@ const path = require("node:path");
 const app = express();
 const testRoute = require("./routes/test.route");
 const homeRoute = require("./routes/home.route");
+const exercisesRoute = require("./routes/exercises.route");
 require("dotenv").config();
 
 //  view stuff
@@ -16,6 +17,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/test", testRoute);
 app.use("/", homeRoute);
+app.use("/exercises", exercisesRoute);
 
 app.listen(process.env.PORT, () => {
   console.log("Listening on port " + process.env.PORT);

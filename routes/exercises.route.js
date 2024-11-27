@@ -1,9 +1,7 @@
-const asyncHandler = require("express-async-handler");
+const express = require("express");
+const router = express.Router();
+const exercisesController = require("../controllers/exercises.controller");
 
-const getExercises = asyncHandler(async (req, res) => {
-  res.render("exercises");
-});
+router.get("/", exercisesController.getExercises);
 
-module.exports = {
-  getExercises,
-};
+module.exports = router;

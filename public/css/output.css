@@ -590,6 +590,14 @@ video {
   height: 100vh;
 }
 
+.h-8 {
+  height: 2rem;
+}
+
+.h-12 {
+  height: 3rem;
+}
+
 .w-screen {
   width: 100vw;
 }
@@ -616,6 +624,11 @@ video {
 
 .rounded-sm {
   border-radius: 0.125rem;
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-80 {
