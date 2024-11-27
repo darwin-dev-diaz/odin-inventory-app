@@ -1526,6 +1526,10 @@ video {
     max-width: 72rem;
   }
 
+  .lg\:max-w-5xl {
+    max-width: 64rem;
+  }
+
   .lg\:flex-row {
     flex-direction: row;
   }
