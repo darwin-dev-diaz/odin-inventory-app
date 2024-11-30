@@ -29,9 +29,11 @@
       <div
         class="max-w-72 md:max-w-96 mb-8 w-full flex flex-col gap-4 mx-auto lg:mt"
       >
-        <form class="w-full h-9 md:h-12 MatrixBoxEffectWhiteLow relative flex">
+        <form
+          class="w-full h-9 md:h-12 MatrixBoxEffectWhiteLow MatrixTextEffectWhiteLow relative flex selectionHoverLow transition"
+        >
           <input
-            class="MatrixTextEffectWhiteLow text-2xl md:text-3xl ml-4 bg-transparent w-full"
+            class="text-2xl md:text-3xl ml-4 bg-transparent w-full"
             placeholder="Search..."
           />
           <svg
@@ -49,11 +51,9 @@
           </svg>
         </form>
         <div
-          class="w-full h-9 md:h-12 MatrixBoxEffectWhiteLow relative flex items-center"
+          class="w-full h-9 md:h-12 MatrixBoxEffectWhiteLow MatrixTextEffectWhiteLow relative flex items-center selectionHoverLow transition"
         >
-          <p class="MatrixTextEffectWhiteLow text-2xl md:text-3xl ml-4">
-            Filter by difficuly
-          </p>
+          <p class="text-2xl md:text-3xl ml-4">Filter by difficuly</p>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="28px"
@@ -64,16 +64,14 @@
           >
             <path
               d="M400-240v-80h160v80H400ZM240-440v-80h480v80H240ZM120-640v-80h720v80H120Z"
-              class="MatrixSVGEffectWhite"
+              class="MatrixSVGEffectWhite transition"
             />
           </svg>
         </div>
         <div
-          class="w-full h-9 md:h-12 MatrixBoxEffectWhiteLow relative flex items-center"
+          class="w-full h-9 md:h-12 MatrixBoxEffectWhiteLow MatrixTextEffectWhiteLow relative flex items-center selectionHoverLow transition"
         >
-          <p class="MatrixTextEffectWhiteLow text-2xl md:text-3xl ml-4">
-            Filter by category
-          </p>
+          <p class="text-2xl md:text-3xl ml-4">Filter by category</p>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="28px"
@@ -95,8 +93,9 @@
         class="grid w-full grid-cols-2 gap-y-3 gap-x-3 max-w-[26.5rem] md:grid-cols-3 md:max-w-2xl mx-auto overflow-y-auto lg:h-[85vh]"
       >
         <% exercises.map((exercise, i) => { %> <%-
-        include('./components/allExercisesComponent.ejs', {index: i, link:exercise.video_url, name: exercise.name, ytToImg:
-        ytToImg}) %> <%})%>
+        include('./components/allExercisesComponent.ejs', {index: i,
+        link:exercise.video_url, name: exercise.name, ytToImg: ytToImg}) %>
+        <%})%>
       </div>
     </div>
   </body>
