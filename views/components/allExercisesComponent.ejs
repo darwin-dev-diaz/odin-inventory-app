@@ -1,0 +1,18 @@
+<% const url = ytToImg(link) %>
+
+<div
+  class="relative EXERCISE-BOX bg-darkSurface-a30 bg-opacity-30 rounded-sm w-full h-52 justify-self-center flex flex-col MatrixBoxEffectGrey md:h-64 cursor-pointer animate__animated animate__bounce"
+>
+  <div
+    class="bg-black w-full max-h-[80%] h-full bg-cover bg-center"
+    style="
+      background-image: url('<%= url %>');
+      filter: grayscale(1) brightness(0.5);
+    "
+  ></div>
+  <p
+    class="text-center text-xl md:text-2xl tracking-wider MatrixTextEffectWhiteLow"
+  >
+    <%= name %>
+  </p>
+</div>

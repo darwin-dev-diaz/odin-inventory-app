@@ -67,3 +67,13 @@ What pages do i need
 - add new exercise page
 - create trainer profile
 [x] - Design the app on figma.
+
+TODO:
+[x] - add the thumbnails into the db somehow
+[] - hook up back end
+[] - start using the railway database
+[] - add the add exercise popup
+[] - make creating an exercise possible
+[] - hook up back end
+[] - polish
+[] - light mode

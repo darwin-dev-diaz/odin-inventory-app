@@ -363,3 +363,5 @@
     transform: translate(0, 0) rotate(0deg);
   }
 }
+
+.scale-in-tl{animation:scale-in-tl .5s cubic-bezier(.25,.46,.45,.94) both}
