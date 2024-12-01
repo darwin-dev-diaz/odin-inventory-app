@@ -2,6 +2,6 @@ const express = require("express");
 const router = express.Router();
 const exerciseController = require("../controllers/exercise.controller");
 
-router.get("/", exerciseController.getExerciseByID);
+router.get("/:exerciseID", exerciseController.getExerciseByID);
 
 module.exports = router;

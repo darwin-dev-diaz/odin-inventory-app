@@ -3,20 +3,22 @@
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
 />
-<div
-  class="relative EXERCISE-BOX bg-darkSurface-a30 bg-opacity-30 rounded-sm w-full h-52 justify-self-center flex flex-col MatrixBoxEffectGrey md:h-64 cursor-pointer animate__animated animate__fadeIn animate__faster"
-  style="animation-delay: <%= index * 50%>ms"
->
+<a href="exercise/<%= index %>">
   <div
-    class="bg-black w-full max-h-[80%] h-full bg-cover bg-center"
-    style="
-      background-image: url('<%= url %>');
-      filter: grayscale(1) brightness(0.5);
-    "
-  ></div>
-  <p
-    class="text-center text-xl md:text-2xl tracking-wider MatrixTextEffectWhiteLow"
+    class="relative EXERCISE-BOX bg-darkSurface-a30 bg-opacity-30 rounded-sm w-full h-52 justify-self-center flex flex-col MatrixBoxEffectGrey md:h-64 animate__animated animate__fadeIn animate__faster"
+    style="animation-delay: <%= index * 50%>ms"
   >
-    <%= name %>
-  </p>
-</div>
+    <div
+      class="bg-black w-full max-h-[80%] h-full bg-cover bg-center"
+      style="
+        background-image: url('<%= url %>');
+        filter: grayscale(1) brightness(0.5);
+      "
+    ></div>
+    <p
+      class="text-center text-xl md:text-2xl tracking-wider MatrixTextEffectWhiteLow"
+    >
+      <%= name %>
+    </p>
+  </div>
+</a>

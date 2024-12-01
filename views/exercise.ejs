@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/output.css" />
     <link rel="stylesheet" href="/css/index.css" />
-    <title>Exercise | Calisthenics zone</title>
+    <title><%= name %> | Calisthenics zone</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
       body {
@@ -44,7 +44,7 @@
         <p
           class="max-w-xl w-full h-fit MatrixBoxEffectGrey bg-darkSurface-a30 bg-opacity-30 text-3xl p-3 MatrixTextEffectWhiteLow EasyTag"
         >
-          Hand stand push up
+          <%= name %>
         </p>
       </div>
 
@@ -52,16 +52,11 @@
         <p
           class="max-w-xl w-full h-fit MatrixBoxEffectGrey bg-darkSurface-a30 bg-opacity-30 text-lg p-3 MatrixTextEffectWhiteLow tracking-wider mb-11 lg:text-xl"
         >
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor
-          officia facere enim blanditiis quisquam, quaerat eveniet, expedita
-          aliquid dignissimos quo consequatur consectetur ab quos inventore
-          totam, laudantium dolorem molestias eligendi
+          <%= exercise.description %>
         </p>
+<!-- YOU ARE HERE, YOU'RE CURRENTLY FILLING OUT THE EXERCISE SCREEN WITH DB INFO. NEXT THING IS TO FIGURE OUT THE TAGS -->
 
-        <iframe
-          class="w-full h-96 mb-7"
-          src="https://www.youtube.com/embed/tgbNymZ7vqY"
-        >
+        <iframe class="w-full h-96 mb-7" src="<%= embed %>">
         </iframe>
 
         <div class="w-full flex flex-col gap-3 mb-11">
