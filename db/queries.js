@@ -32,8 +32,19 @@ async function getExerciseCategories(exerciseID) {
   return output;
 }
 
+async function getExerciseDifficulty(difficulty_id) {
+  const output = (
+    await pool.query("SELECT name FROM difficulty WHERE id = $1", [
+      difficulty_id,
+    ])
+  ).rows[0].name;
+
+  return capitalize(output);
+}
+
 module.exports = {
   getEverySkill,
   getExerciseByID,
   getExerciseCategories,
+  getExerciseDifficulty,
 };

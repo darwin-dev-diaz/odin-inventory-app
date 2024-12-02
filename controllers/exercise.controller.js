@@ -11,14 +11,20 @@ const getExerciseByID = asyncHandler(async (req, res) => {
   const exerciseCategories = await query.getExerciseCategories(
     req.params.exerciseID
   );
+  const exerciseDifficulty = await query.getExerciseDifficulty(
+    exercise.difficulty
+  );
 
   res.render("exercise", {
     name: capitalize(exercise.name),
-    prereqName: capitalize(prerequisteExercise.name),
+    prereqName: prerequisteExercise
+      ? capitalize(prerequisteExercise.name)
+      : null,
     embed: ytToEmbed(exercise.video_url),
     exercise: exercise,
     prereqExercise: prerequisteExercise,
     categories: exerciseCategories,
+    difficulty: exerciseDifficulty,
   });
 });
 

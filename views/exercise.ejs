@@ -35,10 +35,24 @@
           class="w-full aspect-square MatrixBoxEffectGrey bg-darkSurface-a30 bg-opacity-30 mb-3 justify-self-center md:max-w-md"
         ></div>
         <p
-          class="max-w-xl w-full h-fit MatrixBoxEffectGrey bg-darkSurface-a30 bg-opacity-30 text-3xl p-3 MatrixTextEffectWhiteLow EasyTag"
+          class="max-w-xl w-full h-fit MatrixBoxEffectGrey bg-darkSurface-a30 bg-opacity-30 text-3xl p-3 MatrixTextEffectWhiteLow mb-3"
         >
           <%= name %>
         </p>
+        <div
+          class="max-w-xl w-full h-fit MatrixBoxEffectGrey bg-darkSurface-a30 bg-opacity-30 text-3xl p-3 MatrixTextEffectWhiteLow <%= difficulty %>Tag"
+        >
+          Difficulty: <% if (difficulty === "Advanced") { %>
+          <span class="glitch-wrapper">
+            <span
+              class="glitch tracking-widest"
+              data-glitch="<%= difficulty %>"
+            >
+              <%= difficulty %>
+            </span>
+          </span>
+          <% } else { %> <%= difficulty %> <% } %>
+        </div>
       </div>
 
       <div class="md:mt-11 md:h-[80vh] overflow-y-auto">

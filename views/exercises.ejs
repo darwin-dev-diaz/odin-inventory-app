@@ -93,9 +93,8 @@
         class="grid w-full grid-cols-2 gap-y-3 gap-x-3 max-w-[26.5rem] md:grid-cols-3 md:max-w-2xl mx-auto overflow-y-auto lg:h-[85vh]"
       >
         <% exercises.map((exercise, i) => { %> <%-
-        include('./components/allExercisesComponent.ejs', {index: i,
-        link:exercise.video_url, name: exercise.name, ytToImg: ytToImg}) %>
-        <%})%>
+        include('./components/allExercisesComponent.ejs', {index: i + 1, link:
+        exercise.video_url, name: exercise.name, ytToImg: ytToImg}) %> <%})%>
       </div>
     </div>
   </body>
