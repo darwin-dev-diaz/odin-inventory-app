@@ -27,16 +27,9 @@
     >
       <div class="max-w-md justify-self-stretch w-full">
         <div class="flex w-full gap-1 mb-2">
-          <div
-            class="w-fit h-fit text-xl px-2 py-1 ShoulderTag bg-opacity-20 mb MatrixTextEffectWhiteLow"
-          >
-            Shoulders
-          </div>
-          <div
-            class="w-fit h-fit text-xl px-2 py-1 ArmTag bg-opacity-20 MatrixTextEffectWhiteLow"
-          >
-            Arms
-          </div>
+          <% categories.map(category => { %> <%-
+          include('./components/categoryTag.ejs', {category: category}) %> <%
+          })%>
         </div>
         <div
           class="w-full aspect-square MatrixBoxEffectGrey bg-darkSurface-a30 bg-opacity-30 mb-3 justify-self-center md:max-w-md"
@@ -54,10 +47,8 @@
         >
           <%= exercise.description %>
         </p>
-<!-- YOU ARE HERE, YOU'RE CURRENTLY FILLING OUT THE EXERCISE SCREEN WITH DB INFO. NEXT THING IS TO FIGURE OUT THE TAGS -->
 
-        <iframe class="w-full h-96 mb-7" src="<%= embed %>">
-        </iframe>
+        <iframe class="w-full h-96 mb-7" src="<%= embed %>"> </iframe>
 
         <div class="w-full flex flex-col gap-3 mb-11">
           <button

@@ -267,14 +267,14 @@
   }
 }
 
-.ShoulderTag {
+.ShouldersTag {
   background-color: #e17d7d3b;
   box-shadow: 0 0 2px #e17d7dbf, 0 0 7px #e17d7dbf;
   border-radius: 0.125rem;
   border-color: #e17d7dbf;
   border-width: 0.5px;
 }
-.ArmTag {
+.ArmsTag {
   background-color: #c07de138;
   box-shadow: 0 0 2px #c07de1bf, 0 0 7px #c07de1bf;
   border-radius: 0.125rem;
