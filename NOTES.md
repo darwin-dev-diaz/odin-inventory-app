@@ -70,10 +70,15 @@ What pages do i need
 
 TODO:
 [x] - add the thumbnails into the db somehow
-[] - hook up back end
+[] - hook up back end to exercises
+        - add pictures to db 
+[] - hook up progressions screen
+[] - make header sticky
 [] - start using the railway database
 [] - add the add exercise popup
 [] - make creating an exercise possible
 [] - hook up back end
 [] - polish
 [] - light mode
+
+

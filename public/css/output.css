@@ -562,6 +562,10 @@ video {
   position: relative;
 }
 
+.sticky {
+  position: sticky;
+}
+
 .left-\[-2rem\] {
   left: -2rem;
 }
@@ -580,6 +584,10 @@ video {
 
 .z-40 {
   z-index: 40;
+}
+
+.z-30 {
+  z-index: 30;
 }
 
 .col-span-3 {
@@ -1332,6 +1340,8 @@ video {
 .scale-in-tl {
   animation: scale-in-tl 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
+
+x
 
 .glitch {
   position: relative;
