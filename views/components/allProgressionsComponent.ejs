@@ -1,19 +1,57 @@
-<div
+<style>
+  @media (min-width: 768px) {
+    .dynamic-grid {
+      grid-template-rows: repeat(1, minmax(0, 1fr)) !important;
+    }
+    .dynamic-item {
+      grid-row: span 1 / span 1 !important;
+      grid-column: span 1 / span 1 !important;
+    }
+  }
+</style>
+
+<a
   class="EXERCISE-BOX bg-darkSurface-a30 bg-opacity-30 rounded-sm w-full aspect-square justify-self-center flex flex-col MatrixBoxEffectGrey md:h-64 cursor-pointer md:max-w-xl"
+  href="/progression/<%= progressionArr[0].end_skill_id %>"
 >
-  <div class="w-full h-full grid grid-cols-4 grid-rows-4 md:grid-rows-1">
+  <div
+    class="w-full h-full grid dynamic-grid"
+    style="
+      grid-template-columns: repeat(
+        <%= progressionArr.length %>,
+        minmax(0, 1fr)
+      );
+      grid-template-rows: repeat(<%= progressionArr.length %>, minmax(0, 1fr));
+    "
+  >
+    <%progressionArr.map((progression, i)=>{%> <% if(i===0){%>
     <div
-      class="bg-green-900 row-span-3 col-span-3 md:row-span-1 md:col-span-1  w-full h-full"
+      class="bg-green-700 md:row-span-1 md:col-span-1 w-full h-full dynamic-item"
+      style="
+        grid-row: span <%= progressionArr.length - 1 %> / span <%=
+          progressionArr.length - 1 %>;
+        grid-column: span <%= progressionArr.length - 1 %> / span <%=
+          progressionArr.length - 1 %>;
+      "
+    >
+      <%= progressionArr.length %>
+    </div>
+
+    <%} else {%>
+    <div
+      class="w-full h-full bg-green"
+      style="
+        background-color: rgba(<%= 22 + (25 * i) %>, 163, <%= 74 + (10 * i) %>);
+      "
     ></div>
-    <div class="bg-green-600 w-full h-full"></div>
-    <div class="bg-green-400 w-full h-full"></div>
-    <div class="bg-green-200 w-full h-full"></div>
+
+    <%}%> <%})%>
     <div class="w-full h-full col-span-full flex justify-center items-center">
       <p
         class="text-center text-3xl md:text-4xl tracking-wider MatrixTextEffectWhiteLow"
       >
-        One arm push up
+        <%= namesArr[index].name%> progression
       </p>
     </div>
   </div>
-</div>
+</a>

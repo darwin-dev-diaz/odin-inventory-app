@@ -42,9 +42,24 @@ async function getExerciseDifficulty(difficulty_id) {
   return capitalize(output);
 }
 
+async function getAllProgressions() {
+  const { rows } = await pool.query(
+    "SELECT end_skill_id, ARRAY_AGG(ROW_TO_JSON(progression) ORDER BY progression_order DESC) AS progressions FROM progression GROUP BY end_skill_id ORDER BY end_skill_id"
+  );
+
+  const names = (
+    await pool.query(
+      "SELECT name FROM skills, (SELECT end_skill_id FROM progression GROUP BY end_skill_id ORDER BY end_skill_id ) AS end_table WHERE skills.id = end_table.end_skill_id ORDER BY id"
+    )
+  ).rows;
+
+  return [rows.map((row) => row.progressions), names];
+}
+
 module.exports = {
   getEverySkill,
   getExerciseByID,
   getExerciseCategories,
   getExerciseDifficulty,
+  getAllProgressions,
 };

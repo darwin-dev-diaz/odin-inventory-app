@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/output.css" />
     <link rel="stylesheet" href="/css/index.css" />
-    <title>Exercises | Calisthenics zone</title>
+    <title>Progressions | Calisthenics Matrix</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
       body {
@@ -29,21 +29,11 @@
       <div
         class="flex flex-col w-full max-w-[26.5rem] md:max-w-2xl mx-auto overflow-y-auto lg:h-[85vh] gap-7 items-center"
       >
-        <%- include('./components/allProgressionsComponent.ejs') %> <%-
-        include('./components/allProgressionsComponent.ejs') %> <%-
-        include('./components/allProgressionsComponent.ejs') %> <%-
-        include('./components/allProgressionsComponent.ejs') %> <%-
-        include('./components/allProgressionsComponent.ejs') %> <%-
-        include('./components/allProgressionsComponent.ejs') %><%-
-        include('./components/allProgressionsComponent.ejs') %><%-
-        include('./components/allProgressionsComponent.ejs') %><%-
-        include('./components/allProgressionsComponent.ejs') %><%-
-        include('./components/allProgressionsComponent.ejs') %><%-
-        include('./components/allProgressionsComponent.ejs') %><%-
-        include('./components/allProgressionsComponent.ejs') %><%-
-        include('./components/allProgressionsComponent.ejs') %><%-
-        include('./components/allProgressionsComponent.ejs') %><%-
-        include('./components/allProgressionsComponent.ejs') %>
+        <% progressionsArrs.map((progressionArr, index)=>{%> 
+
+        <%- include('./components/allProgressionsComponent.ejs', {progressionArr: progressionArr, namesArr: namesArr, index: index}) %>
+
+        <%})%>
       </div>
     </div>
   </body>

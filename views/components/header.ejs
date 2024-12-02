@@ -1,7 +1,8 @@
 <header
   class="sticky w-screen top-0 pt-3 h-12 flex justify-center items-center z-30"
+  id="header"
 >
-  <div class="flex gap-3">
+  <div class="flex gap-3 headerDiv" id="headerDiv">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       height="32px"
@@ -57,3 +58,12 @@
     </svg>
   </div>
 </header>
+
+<script defer>
+  const headerDiv = document.getElementById("headerDiv");
+  console.log(headerDiv);
+  document.addEventListener("scroll", (e) => {
+    if (window.scrollY > 48) headerDiv.classList.add("onScroll");
+    else headerDiv.classList.remove("onScroll");
+  });
+</script>
