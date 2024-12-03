@@ -1,3 +1,10 @@
+<% const animation = "animate__fadeIn" %>
+<% const animationSpeed = "animate__faster" %>
+<% const animationDelay = 50 %> <!-- Increase to 250ms -->
+<% let animationDelaySave = 0 %>
+<% const getDelay = (delay) => { animationDelaySave += delay; return animationDelaySave; } %>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/output.css" />
     <link rel="stylesheet" href="/css/index.css" />
-    <title>Calisthenics zone</title>
+    <title>Calisthenics Matrix</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
       body {
@@ -19,6 +26,10 @@
         color: white;
       }
     </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
   </head>
   <body class="">
     <div
@@ -28,42 +39,60 @@
         <h1
           class="bg-opacity-80 text-black md:text-7xl text-5xl bold uppercase text-center mb-9 rounded-sm"
         >
-          <span class="MatrixTextEffect">Calisthenics zone</span>
+          <span class="MatrixTextEffect">Calisthenics Matrix</span>
         </h1>
         <div
           class="relative LINKS flex flex-col text-4xl md:text-5xl justify-center items-start gap-5"
         >
-          <button class="relative custom-btn btn-3">
+          <button
+            class="relative custom-btn btn-3 animate__animated <%= animation%> <%= animationSpeed%>"
+            style="animation-delay: <%= getDelay(animationDelay)%>ms"
+          >
             <span class="MatrixTextEffectWhite px-2">
-              <a href="/exercises">Exercise</a>
+              <a href="/exercises">Exercises</a>
               <p class="absolute top-0 left-[-2rem] hidden md:block">0</p>
             </span>
           </button>
-          <button class="relative custom-btn btn-3">
+          <button
+            class="relative custom-btn btn-3 animate__animated <%= animation%> <%= animationSpeed%>"
+            style="animation-delay: <%= getDelay(animationDelay)%>ms"
+          >
             <span class="MatrixTextEffectWhite px-2">
-              <a href="">Progression</a>
+              <a href="/progressions">Progressions</a>
               <p class="absolute top-0 left-[-2rem] hidden md:block">1</p>
             </span>
           </button>
-          <button class="relative custom-btn btn-3">
+          <button
+            class="relative custom-btn btn-3 animate__animated <%= animation%> <%= animationSpeed%>"
+            style="animation-delay: <%= getDelay(animationDelay)%>ms"
+          >
             <span class="MatrixTextEffectWhite px-2">
               <a href="">Category</a>
               <p class="absolute top-0 left-[-2rem] hidden md:block">2</p>
             </span>
           </button>
-          <button class="relative custom-btn btn-3">
+          <button
+            class="relative custom-btn btn-3 animate__animated <%= animation%> <%= animationSpeed%>"
+            style="animation-delay: <%= getDelay(animationDelay)%>ms"
+          >
             <span class="MatrixTextEffectWhite px-2">
               <a href="">Difficulty</a>
               <p class="absolute top-0 left-[-2rem] hidden md:block">3</p>
             </span>
           </button>
-          <button class="relative custom-btn btn-3">
+          <button
+            class="relative custom-btn btn-3 animate__animated <%= animation%> <%= animationSpeed%>"
+            style="animation-delay: <%= getDelay(animationDelay)%>ms"
+          >
             <span class="MatrixTextEffectWhite px-2">
               <a href="">About</a>
               <p class="absolute top-0 left-[-2rem] hidden md:block">4</p>
             </span>
           </button>
-          <button class="relative custom-btn btn-3">
+          <button
+            class="relative custom-btn btn-3 animate__animated <%= animation%> <%= animationSpeed%>"
+            style="animation-delay: <%= getDelay(animationDelay)%>ms"
+          >
             <span class="MatrixTextEffectWhite px-2">
               <a href="">Add Exercise</a>
               <p class="absolute top-0 left-[-2rem] hidden md:block">5</p>
