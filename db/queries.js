@@ -58,10 +58,10 @@ async function getAllProgressions() {
 
 async function getProgressionByID(end_skill_id) {
   const { rows } = await pool.query(
-    "SELECT end_skill_id, ARRAY_AGG(ROW_TO_JSON(progression) ORDER BY progression_order DESC) AS progressions FROM progression WHERE end_skill_id = $1 GROUP BY end_skill_id ORDER BY end_skill_id",
+    "SELECT * FROM progression LEFT JOIN skills ON progression.skill_id = skills.id WHERE end_skill_id = $1 ORDER BY progression_order DESC",
     [end_skill_id]
   );
-  return rows.map((row) => row.progressions);
+  return rows;
 }
 
 module.exports = {

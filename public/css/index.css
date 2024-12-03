@@ -348,14 +348,14 @@
   background-color: #e17d7d3b;
   box-shadow: 0 0 2px #e17d7dbf, 0 0 7px #e17d7dbf;
   border-radius: 0.125rem;
-  border-color: rgb(22, 163, 74);
+  border-color: #e17d7dbf;
   border-width: 0.5px;
 }
 
 .scale-in-tl {
   animation: scale-in-tl 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
-x .glitch {
+.glitch {
   position: relative;
 }
 
@@ -558,7 +558,7 @@ x .glitch {
 
 .onScroll {
   width: fit-content;
-  padding: .25rem .75rem .25rem .75rem;
+  padding: 0.25rem 0.75rem 0.25rem 0.75rem;
   background-color: #2d5726b0;
   box-shadow: 0 0 2px #2d5726f6, 0 0 7px #2d5726f6;
   border-radius: 0.125rem;

@@ -20,7 +20,7 @@
       }
     </style>
   </head>
-  <body class="md:h-screen md:overflow-hidden">
+  <body class="">
     <%- include('./components/header.ejs') %>
     <div
       class="CONTENT z-40 p-[1.75rem] flex flex-col justify-center items-center mx-auto px-5 max-w-xl md:max-w-4xl lg:max-w-5xl md:flex-row md: gap-8 md:items-start"
@@ -40,7 +40,7 @@
           <%= name %>
         </p>
         <div
-          class="max-w-xl w-full h-fit MatrixBoxEffectGrey bg-darkSurface-a30 bg-opacity-30 text-3xl p-3 MatrixTextEffectWhiteLow <%= difficulty %>Tag"
+          class="max-w-xl w-full h-fit  bg-opacity-30 text-3xl p-3 MatrixTextEffectWhiteLow <%= difficulty %>Tag"
         >
           Difficulty: <% if (difficulty === "Advanced") { %>
           <span class="glitch-wrapper">
@@ -55,7 +55,7 @@
         </div>
       </div>
 
-      <div class="md:mt-11 md:h-[80vh] overflow-y-auto">
+      <div class="md:mt-11 ">
         <p
           class="max-w-xl w-full h-fit MatrixBoxEffectGrey bg-darkSurface-a30 bg-opacity-30 text-lg p-3 MatrixTextEffectWhiteLow tracking-wider mb-11 lg:text-xl"
         >
