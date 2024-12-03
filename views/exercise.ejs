@@ -32,7 +32,11 @@
           })%>
         </div>
         <div
-          class="w-full aspect-square MatrixBoxEffectGrey bg-darkSurface-a30 bg-opacity-30 mb-3 justify-self-center md:max-w-md"
+          class="w-full aspect-square MatrixBoxEffectGrey bg-darkSurface-a30 bg-opacity-30 mb-3 justify-self-center md:max-w-md bg-cover bg-center"
+          style="
+            background-image: url('<%= imgUrl %>');
+            filter: grayscale(1) brightness(0.75);
+          "
         ></div>
         <p
           class="max-w-xl w-full h-fit MatrixBoxEffectGrey bg-darkSurface-a30 bg-opacity-30 text-3xl p-3 MatrixTextEffectWhiteLow mb-3"
@@ -40,7 +44,7 @@
           <%= name %>
         </p>
         <div
-          class="max-w-xl w-full h-fit  bg-opacity-30 text-3xl p-3 MatrixTextEffectWhiteLow <%= difficulty %>Tag"
+          class="max-w-xl w-full h-fit bg-opacity-30 text-3xl p-3 MatrixTextEffectWhiteLow <%= difficulty %>Tag"
         >
           Difficulty: <% if (difficulty === "Advanced") { %>
           <span class="glitch-wrapper">
@@ -55,14 +59,23 @@
         </div>
       </div>
 
-      <div class="md:mt-11 ">
+      <div class="md:mt-11">
         <p
           class="max-w-xl w-full h-fit MatrixBoxEffectGrey bg-darkSurface-a30 bg-opacity-30 text-lg p-3 MatrixTextEffectWhiteLow tracking-wider mb-11 lg:text-xl"
         >
           <%= exercise.description %>
         </p>
 
-        <iframe class="w-full h-96 mb-7" src="<%= embed %>"> </iframe>
+        <!-- <iframe class="w-full h-96 mb-7" src=""> </iframe> -->
+        <iframe
+          class="w-full aspect-video mb-7"
+          src="<%= embed %>"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
 
         <div class="w-full flex flex-col gap-3 mb-11">
           <button
@@ -82,7 +95,13 @@
           class="flex MatrixBoxEffectGrey w-full bg-darkSurface-a30 bg-opacity-30 items-center cursor-pointer"
           href="/exercise/<%= prereqID %>"
         >
-          <div class="bg-black w-[35%] aspect-square"></div>
+          <div
+            class="bg-black w-[35%] aspect-square bg-cover bg-center"
+            style="
+              background-image: url('<%= prereqImgUrl %>');
+              filter: grayscale(1) brightness(0.75);
+            "
+          ></div>
           <div class="flex flex-col w-[65%] justify-center items-center">
             <p class="MatrixTextEffectWhiteLow text-3xl">Prerequisite:</p>
 

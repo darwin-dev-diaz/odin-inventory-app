@@ -2,6 +2,7 @@ const asyncHandler = require("express-async-handler");
 const query = require("../db/queries");
 const capitalize = require("../util/capitalize");
 const ytToEmbed = require("../util/ytToEmbed");
+const ytToImg = require("../util/ytToImg");
 
 const getExerciseByID = asyncHandler(async (req, res) => {
   const exercise = await query.getExerciseByID(req.params.exerciseID);
@@ -24,6 +25,10 @@ const getExerciseByID = asyncHandler(async (req, res) => {
     prereqID: prerequisteExercise ? prerequisteExercise.id : null,
     categories: exerciseCategories,
     difficulty: exerciseDifficulty,
+    imgUrl: ytToImg(exercise.video_url),
+    prereqImgUrl: prerequisteExercise
+      ? ytToImg(prerequisteExercise.video_url)
+      : null,
   });
 });
 

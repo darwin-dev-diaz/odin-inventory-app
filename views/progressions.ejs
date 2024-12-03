@@ -20,20 +20,18 @@
       }
     </style>
   </head>
-  <body class="lg:h-screen lg:overflow-hidden">
+  <body class="">
     <%- include('./components/header.ejs') %>
     <div
       class="CONTENT z-40 p-[1.75rem] flex flex-col justify-center items-center md:items-start mx-auto px-5 lg:flex-row md:mt-14 lg:gap-9 lg:max-w-6xl"
     >
       <!-- exercises -->
       <div
-        class="flex flex-col w-full max-w-[26.5rem] md:max-w-2xl mx-auto overflow-y-auto lg:h-[85vh] gap-7 items-center"
+        class="flex flex-col w-full max-w-[26.5rem] md:max-w-2xl mx-auto gap-7 items-center"
       >
-        <% progressionsArrs.map((progressionArr, index)=>{%> 
-
-        <%- include('./components/allProgressionsComponent.ejs', {progressionArr: progressionArr, namesArr: namesArr, index: index}) %>
-
-        <%})%>
+        <% progressionsArrs.map((progressionArr, index)=>{%> <%-
+        include('./components/allProgressionsComponent.ejs', {progressionArr:
+        progressionArr, namesArr: namesArr, index: index}) %> <%})%>
       </div>
     </div>
   </body>
