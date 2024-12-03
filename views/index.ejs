@@ -1,9 +1,8 @@
-<% const animation = "animate__fadeIn" %>
-<% const animationSpeed = "animate__faster" %>
-<% const animationDelay = 50 %> <!-- Increase to 250ms -->
-<% let animationDelaySave = 0 %>
-<% const getDelay = (delay) => { animationDelaySave += delay; return animationDelaySave; } %>
-
+<% const animation = "animate__fadeIn" %> <% const animationSpeed =
+"animate__faster" %> <% const animationDelay = 50 %>
+<!-- Increase to 250ms -->
+<% let animationDelaySave = 0 %> <% const getDelay = (delay) => {
+animationDelaySave += delay; return animationDelaySave; } %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -41,12 +40,13 @@
         >
           <span class="MatrixTextEffect">Calisthenics Matrix</span>
         </h1>
+
         <div
           class="relative LINKS flex flex-col text-4xl md:text-5xl justify-center items-start gap-5"
         >
           <button
             class="relative custom-btn btn-3 animate__animated <%= animation%> <%= animationSpeed%>"
-            style="animation-delay: <%= getDelay(animationDelay)%>ms"
+            style="animation-delay: <%= getDelay(animationDelay) %>ms"
           >
             <span class="MatrixTextEffectWhite px-2">
               <a href="/exercises">Exercises</a>
@@ -55,7 +55,7 @@
           </button>
           <button
             class="relative custom-btn btn-3 animate__animated <%= animation%> <%= animationSpeed%>"
-            style="animation-delay: <%= getDelay(animationDelay)%>ms"
+            style="animation-delay: <%= getDelay(animationDelay) %>ms"
           >
             <span class="MatrixTextEffectWhite px-2">
               <a href="/progressions">Progressions</a>
@@ -64,7 +64,7 @@
           </button>
           <button
             class="relative custom-btn btn-3 animate__animated <%= animation%> <%= animationSpeed%>"
-            style="animation-delay: <%= getDelay(animationDelay)%>ms"
+            style="animation-delay: <%= getDelay(animationDelay) %>ms"
           >
             <span class="MatrixTextEffectWhite px-2">
               <a href="">Category</a>
@@ -73,7 +73,7 @@
           </button>
           <button
             class="relative custom-btn btn-3 animate__animated <%= animation%> <%= animationSpeed%>"
-            style="animation-delay: <%= getDelay(animationDelay)%>ms"
+            style="animation-delay: <%= getDelay(animationDelay) %>ms"
           >
             <span class="MatrixTextEffectWhite px-2">
               <a href="">Difficulty</a>
@@ -82,7 +82,7 @@
           </button>
           <button
             class="relative custom-btn btn-3 animate__animated <%= animation%> <%= animationSpeed%>"
-            style="animation-delay: <%= getDelay(animationDelay)%>ms"
+            style="animation-delay: <%= getDelay(animationDelay) %>ms"
           >
             <span class="MatrixTextEffectWhite px-2">
               <a href="">About</a>
@@ -91,7 +91,7 @@
           </button>
           <button
             class="relative custom-btn btn-3 animate__animated <%= animation%> <%= animationSpeed%>"
-            style="animation-delay: <%= getDelay(animationDelay)%>ms"
+            style="animation-delay: <%= getDelay(animationDelay) %>ms"
           >
             <span class="MatrixTextEffectWhite px-2">
               <a href="">Add Exercise</a>
