@@ -47,13 +47,14 @@ async function getAllProgressions() {
   let { rows } = await pool.query(
     "SELECT array_agg(json_build_object('name', skills.name, 'end_skill_id', progression.end_skill_id, 'video_url', skills.video_url)) AS progression_details FROM progression INNER JOIN skills ON progression.skill_id = skills.id  GROUP BY progression.end_skill_id ORDER BY end_skill_id ASC"
   );
-  rows = rows.map((row) => row.progression_details);
-  rows = rows.map((row) =>
-    row.map((exercise) => ({
-      ...exercise,
-      video_url: ytToImg(exercise.video_url),
-    }))
-  );
+  rows = rows
+    .map((row) => row.progression_details)
+    .map((row) =>
+      row.map((exercise) => ({
+        ...exercise,
+        video_url: ytToImg(exercise.video_url),
+      }))
+    );
 
   const names = (
     await pool.query(
@@ -65,10 +66,14 @@ async function getAllProgressions() {
 }
 
 async function getProgressionByID(end_skill_id) {
-  const { rows } = await pool.query(
+  let { rows } = await pool.query(
     "SELECT * FROM progression LEFT JOIN skills ON progression.skill_id = skills.id WHERE end_skill_id = $1 ORDER BY progression_order DESC",
     [end_skill_id]
   );
+  rows = rows.map((exercise) => ({
+    ...exercise,
+    imgUrl: ytToImg(exercise.video_url),
+  }));
   return rows;
 }
 

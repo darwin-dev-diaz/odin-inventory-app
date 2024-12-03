@@ -4,7 +4,6 @@ const query = require("../db/queries");
 
 const getProgressions = asyncHandler(async (req, res) => {
   const [progressionsArrs, namesArr] = await query.getAllProgressions();
-  console.log(progressionsArrs);
 
   res.render("progressions", {
     progressionsArrs: progressionsArrs,
