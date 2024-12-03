@@ -1,5 +1,6 @@
 const pool = require("./pool");
 const capitalize = require("../util/capitalize");
+const ytToImg = require("../util/ytToImg");
 
 async function getEverySkill() {
   const { rows } = await pool.query("SELECT * FROM skills ORDER BY id");
@@ -43,8 +44,15 @@ async function getExerciseDifficulty(difficulty_id) {
 }
 
 async function getAllProgressions() {
-  const { rows } = await pool.query(
-    "SELECT end_skill_id, ARRAY_AGG(ROW_TO_JSON(progression) ORDER BY progression_order DESC) AS progressions FROM progression GROUP BY end_skill_id ORDER BY end_skill_id"
+  let { rows } = await pool.query(
+    "SELECT array_agg(json_build_object('name', skills.name, 'end_skill_id', progression.end_skill_id, 'video_url', skills.video_url)) AS progression_details FROM progression INNER JOIN skills ON progression.skill_id = skills.id  GROUP BY progression.end_skill_id ORDER BY end_skill_id ASC"
+  );
+  rows = rows.map((row) => row.progression_details);
+  rows = rows.map((row) =>
+    row.map((exercise) => ({
+      ...exercise,
+      video_url: ytToImg(exercise.video_url),
+    }))
   );
 
   const names = (
@@ -53,7 +61,7 @@ async function getAllProgressions() {
     )
   ).rows;
 
-  return [rows.map((row) => row.progressions), names];
+  return [rows, names];
 }
 
 async function getProgressionByID(end_skill_id) {

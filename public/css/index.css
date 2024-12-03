@@ -559,9 +559,10 @@
 .onScroll {
   width: fit-content;
   padding: 0.25rem 0.75rem 0.25rem 0.75rem;
-  background-color: #2d5726b0;
+  background-color: #2d57267a;
   box-shadow: 0 0 2px #2d5726f6, 0 0 7px #2d5726f6;
   border-radius: 0.125rem;
   border-color: #2d5726f6;
   border-width: 0.5px;
+  backdrop-filter: blur(10px);
 }

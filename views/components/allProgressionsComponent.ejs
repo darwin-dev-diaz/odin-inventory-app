@@ -25,25 +25,44 @@
     "
   >
     <%progressionArr.map((progression, i)=>{%> <% if(i===0){%>
+
     <div
-      class="bg-green-700 md:row-span-1 md:col-span-1 w-full h-full dynamic-item"
+      class="relative bg-green-700 md:row-span-1 md:col-span-1 w-full h-full dynamic-item bg-auto bg-center"
       style="
         grid-row: span <%= progressionArr.length - 1 %> / span <%=
           progressionArr.length - 1 %>;
         grid-column: span <%= progressionArr.length - 1 %> / span <%=
           progressionArr.length - 1 %>;
+        background-image: url('<%= progression.video_url %>');
+        filter: brightness(0.65);
       "
     >
-      <%= progressionArr.length %>
+      <div
+        class="w-full h-full"
+        style="background-color: rgba(22, 163, 74, 0.65)"
+      ></div>
     </div>
 
     <%} else {%>
     <div
-      class="w-full h-full bg-green"
+      class="relative w-full h-full bg-green bg-auto bg-center"
       style="
-        background-color: rgba(<%= 22 + (25 * i) %>, 163, <%= 74 + (10 * i) %>);
+        background-image: url('<%= progression.video_url %>');
+        filter: brightness(0.65);
       "
-    ></div>
+    >
+      <div
+        class="w-full h-full"
+        style="
+          background-color: rgba(
+            <%= 22 + (35 * i) %>,
+            163,
+            <%= 74 + (10 * i) %>,
+            0.75
+          );
+        "
+      ></div>
+    </div>
 
     <%}%> <%})%>
     <div class="w-full h-full col-span-full flex justify-center items-center">
