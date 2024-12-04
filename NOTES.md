@@ -79,7 +79,7 @@ TODO:
 [x] - filter by category view
 [x] - fill options with db
 [x] - making filtering work for difficulties
-[] - making filtering work for categories
+[x] - making filtering work for categories
 [] - make searching work
 [] - make sorting work
 

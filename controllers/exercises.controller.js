@@ -11,6 +11,8 @@ const getExercises = asyncHandler(async (req, res) => {
     );
   else if (req.query.categoryFilter)
     exercises = await query.filterSkillsByCategory(req.query.categoryFilter);
+  else if (req.query.searchQuery)
+    exercises = await query.searchSkills(req.query.searchQuery);
   else exercises = await query.getEverySkill();
 
   const difficulties = (await query.getDifficulties()).map((difficulty) => ({

@@ -11,6 +11,11 @@ async function getDifficulties() {
   return rows;
 }
 
+async function searchSkills(str) {
+  const query = `SELECT * FROM skills WHERE lower(name) LIKE '%${str.toLowerCase()}%'`;
+  const { rows } = await pool.query(query);
+  return rows;
+}
 async function filterSkillsByDifficulty(arr) {
   const query =
     "SELECT * FROM skills WHERE difficulty IN (" + arr.join(", ") + ")";
@@ -111,4 +116,5 @@ module.exports = {
   getCategories,
   filterSkillsByDifficulty,
   filterSkillsByCategory,
+  searchSkills,
 };
