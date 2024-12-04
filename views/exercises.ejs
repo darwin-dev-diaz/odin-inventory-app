@@ -132,13 +132,24 @@
         <!-- category end -->
       </div>
       <!-- exercises -->
-      <!-- HERE -->
-      <div
-        class="grid w-full grid-cols-2 gap-y-3 gap-x-3 max-w-[26.5rem] md:grid-cols-3 md:max-w-2xl mx-auto"
-      >
-        <% exercises.map((exercise, i) => { %> <%-
-        include('./components/allExercisesComponent.ejs', {index: i + 1, link:
-        exercise.video_url, name: exercise.name, ytToImg: ytToImg}) %> <%})%>
+      <div class="w-full mx-auto text-center">
+        <h1
+          class="text-3xl MatrixTextEffectLow <%= filterSettings ? '' : 'mb-8'%> md:text-4xl"
+        >
+          <%= filterPhrase%>
+        </h1>
+        <%if (filterSettings){%>
+        <h1 class="text-2xl MatrixTextEffectWhiteLow mb-8 md:text-3xl">
+          <%= filterSettings%>
+        </h1>
+        <%}%>
+        <div
+          class="grid w-full grid-cols-2 gap-y-3 gap-x-3 max-w-[26.5rem] md:grid-cols-3 md:max-w-2xl mx-auto"
+        >
+          <% exercises.map((exercise, i) => { %> <%-
+          include('./components/allExercisesComponent.ejs', {index: i + 1, link:
+          exercise.video_url, name: exercise.name, ytToImg: ytToImg}) %> <%})%>
+        </div>
       </div>
     </div>
 

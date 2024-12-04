@@ -6,8 +6,20 @@ async function getEverySkill() {
   const { rows } = await pool.query("SELECT * FROM skills ORDER BY id ASC");
   return rows;
 }
-async function getDifficulties() {
-  const { rows } = await pool.query("SELECT * FROM difficulty");
+async function getDifficulties(arr) {
+  const { rows } = arr
+    ? await pool.query(
+        "SELECT name FROM difficulty WHERE id IN (" + arr.join(", ") + ")"
+      )
+    : await pool.query("SELECT * FROM difficulty");
+  return rows;
+}
+async function getCategories(arr) {
+  const { rows } = arr
+    ? await pool.query(
+        "SELECT * FROM category WHERE id IN (" + arr.join(", ") + ")"
+      )
+    : await pool.query("SELECT * FROM category");
   return rows;
 }
 
@@ -31,10 +43,7 @@ async function filterSkillsByCategory(arr) {
   const { rows } = await pool.query(query);
   return rows;
 }
-async function getCategories() {
-  const { rows } = await pool.query("SELECT * FROM category");
-  return rows;
-}
+
 async function getExerciseByID(exerciseID) {
   const { rows } = await pool.query("SELECT * FROM skills WHERE id = $1", [
     exerciseID,

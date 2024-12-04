@@ -80,7 +80,8 @@ TODO:
 [x] - fill options with db
 [x] - making filtering work for difficulties
 [x] - making filtering work for categories
-[] - make searching work
+[x] - make searching work
+[] - add indication of filtering or search
 [] - make sorting work
 
 - sort alphabetically
