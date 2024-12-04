@@ -17,6 +17,15 @@ async function filterSkillsByDifficulty(arr) {
   const { rows } = await pool.query(query);
   return rows;
 }
+async function filterSkillsByCategory(arr) {
+  const query =
+    "SELECT s.* FROM skills AS s INNER JOIN skills_category AS sc ON s.id = sc.skill_id WHERE sc.category_id IN (" +
+    arr.join(", ") +
+    ")";
+
+  const { rows } = await pool.query(query);
+  return rows;
+}
 async function getCategories() {
   const { rows } = await pool.query("SELECT * FROM category");
   return rows;
@@ -101,4 +110,5 @@ module.exports = {
   getDifficulties,
   getCategories,
   filterSkillsByDifficulty,
+  filterSkillsByCategory,
 };

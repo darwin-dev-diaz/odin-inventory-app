@@ -78,7 +78,8 @@ TODO:
 [x] - filter by difficulty view
 [x] - filter by category view
 [x] - fill options with db
-[] - making filtering work for difficulties
+[x] - making filtering work for difficulties
+[] - making filtering work for categories
 [] - make searching work
 [] - make sorting work
 

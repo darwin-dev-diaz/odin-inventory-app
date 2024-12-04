@@ -5,13 +5,13 @@ const capitalize = require("../util/capitalize");
 
 const getExercises = asyncHandler(async (req, res) => {
   let exercises;
-  if (req.query.difficultyFilter) {
+  if (req.query.difficultyFilter)
     exercises = await query.filterSkillsByDifficulty(
       req.query.difficultyFilter
     );
-  } else {
-    exercises = await query.getEverySkill();
-  }
+  else if (req.query.categoryFilter)
+    exercises = await query.filterSkillsByCategory(req.query.categoryFilter);
+  else exercises = await query.getEverySkill();
 
   const difficulties = (await query.getDifficulties()).map((difficulty) => ({
     ...difficulty,
