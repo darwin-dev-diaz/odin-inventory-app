@@ -1,0 +1,39 @@
+<% const animation = "animate__fadeIn" %> <% const animationSpeed =
+"animate__faster" %> <% const animationDelay = 75 %>
+<!-- Increase to 250ms -->
+<% let animationDelaySave = 0 %> <% const getDelay = (delay) => {
+animationDelaySave += delay; return animationDelaySave; } %>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/output.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <title>New Exercise | Calisthenics Matrix</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+      body {
+        background-color: #0f140f;
+        /* opacity: 0.25; */
+        background-image: radial-gradient(#007a021a 1px, transparent 1px),
+          radial-gradient(#007a021a 1px, #0f140f 1px);
+        background-size: 10px 10px;
+        background-position: 0 0, 20px 2px;
+        font-family: "VT323", monospace;
+        color: white;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+  </head>
+  <body class="">
+    <%- include('./components/header.ejs') %>
+    <div
+      class="CONTENT z-40 p-[1.75rem] flex flex-col justify-center items-center mx-auto px-5 max-w-xl md:max-w-4xl lg:max-w-5xl md:flex-row md: gap-8 md:items-start"
+    ></div>
+  </body>
+</html>

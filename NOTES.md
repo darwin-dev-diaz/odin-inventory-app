@@ -74,15 +74,17 @@ TODO:
 [x] - hook up progression screen - add pictures to db
 [x] - make header sticky
 [x] - activate header sticky style on scroll
-[] - make filtering work
+[x] - make filtering work
 [x] - filter by difficulty view
 [x] - filter by category view
 [x] - fill options with db
 [x] - making filtering work for difficulties
 [x] - making filtering work for categories
 [x] - make searching work
-[] - add indication of filtering or search
-[] - make sorting work
+[x] - add indication of filtering or search
+[ ] - build view for exercise creation
+[ ] - make exercise creation work
+[ ] - make admin controlls work
 
 - sort alphabetically
 - sort by oldest
