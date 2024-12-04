@@ -75,15 +75,18 @@ TODO:
 [x] - make header sticky
 [x] - activate header sticky style on scroll
 [] - make filtering work
-  - filter by difficulty
-  - filter by category
+[x] - filter by difficulty view
+[x] - filter by category view
+[x] - fill options with db
+[] - making filtering work for difficulties
 [] - make searching work
 [] - make sorting work
-  - sort alphabetically
-  - sort by oldest
-  - sort by newest
-[] - make add exercise popup
-[] - make add exercise popup work
+
+- sort alphabetically
+- sort by oldest
+- sort by newest
+  [] - make add exercise popup
+  [] - make add exercise popup work
 
 [] - start using the railway database
 [] - make creating an exercise possible

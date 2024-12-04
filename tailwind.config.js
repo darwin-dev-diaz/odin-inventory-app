@@ -1,5 +1,5 @@
 module.exports = {
-  content: ["./views/**/*.ejs", "./views/components/*.ejs"], // Include all EJS files in the views folder
+  content: ["./views/**/*.ejs", "./views/components/*.ejs"],
   theme: {
     extend: {
       colors: {
