@@ -1,3 +1,11 @@
+<% const animation = "animate__fadeIn" %> <% const animationSpeed =
+"animate__faster" %>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
+
 <style>
   @media (min-width: 768px) {
     .dynamic-grid {
@@ -11,9 +19,11 @@
 </style>
 
 <a
-  class="EXERCISE-BOX bg-darkSurface-a30 bg-opacity-30 rounded-sm w-full aspect-square justify-self-center flex flex-col MatrixBoxEffectGrey md:h-64 cursor-pointer md:max-w-xl"
+  class="EXERCISE-BOX bg-darkSurface-a30 bg-opacity-30 rounded-sm w-full aspect-square justify-self-center flex flex-col MatrixBoxEffectGrey md:h-64 cursor-pointer md:max-w-xl animate__animated <%= animation%> <%= animationSpeed%> div-3 relative"
+  style="animation-delay: <%= 50 * index %>ms"
   href="/progression/<%= progressionArr[0].end_skill_id %>"
 >
+  <div class="absolute w-full h-full bt-hover"></div>
   <div
     class="w-full h-full grid dynamic-grid"
     style="
@@ -40,8 +50,8 @@
       <div
         class="w-full h-full"
         style="
-          background-color: rgba(22, 163, 74, 0.65);
-          backdrop-filter: grayscale(1);
+          background-color: rgba(22, 163, 74, 0.5);
+          backdrop-filter: grayscale(1) blur(0.5px);
         "
       ></div>
     </div>
@@ -57,12 +67,12 @@
       <div
         class="w-full h-full"
         style="
-          backdrop-filter: grayscale(1);
+          backdrop-filter: grayscale(1) blur(0.5px);
           background-color: rgba(
             <%= 22 + (35 * i) %>,
             163,
             <%= 74 + (10 * i) %>,
-            0.75
+            0.5
           );
         "
       ></div>

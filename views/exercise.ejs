@@ -1,3 +1,9 @@
+<% const animation = "animate__fadeIn" %> <% const animationSpeed =
+"animate__faster" %> <% const animationDelay = 75 %>
+<!-- Increase to 250ms -->
+<% let animationDelaySave = 0 %> <% const getDelay = (delay) => {
+animationDelaySave += delay; return animationDelaySave; } %>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,6 +25,10 @@
         color: white;
       }
     </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
   </head>
   <body class="">
     <%- include('./components/header.ejs') %>
@@ -61,14 +71,16 @@
 
       <div class="md:mt-11">
         <p
-          class="max-w-xl w-full h-fit MatrixBoxEffectGrey bg-darkSurface-a30 bg-opacity-30 text-lg p-3 MatrixTextEffectWhiteLow tracking-wider mb-11 lg:text-xl"
+          class="max-w-xl w-full h-fit MatrixBoxEffectGrey bg-darkSurface-a30 bg-opacity-30 text-lg p-3 MatrixTextEffectWhiteLow tracking-wider mb-11 lg:text-xl animate__animated <%= animation%> <%= animationSpeed%>"
+          style="animation-delay: <%= getDelay(animationDelay) %>ms"
         >
           <%= exercise.description %>
         </p>
 
         <!-- <iframe class="w-full h-96 mb-7" src=""> </iframe> -->
         <iframe
-          class="w-full aspect-video mb-7"
+          class="w-full aspect-video mb-7 animate__animated <%= animation%> <%= animationSpeed%>"
+          style="animation-delay: <%= getDelay(animationDelay) %>ms"
           src="<%= embed %>"
           title="YouTube video player"
           frameborder="0"
@@ -79,12 +91,14 @@
 
         <div class="w-full flex flex-col gap-3 mb-11">
           <button
-            class="w-full h-9 md:h-12 MatrixBoxEffectWhiteLow relative items-center DeleteButton text-center MatrixTextEffectWhiteLow text-2xl cursor-pointer"
+            class="w-full h-9 md:h-12 MatrixBoxEffectWhiteLow relative items-center DeleteButton text-center MatrixTextEffectWhiteLow text-2xl cursor-pointer animate__animated <%= animation%> <%= animationSpeed%>"
+            style="animation-delay: <%= getDelay(animationDelay) %>ms"
           >
             Delete Exercise
           </button>
           <button
-            class="w-full h-9 md:h-12 EditButton relative items-center text-center MatrixTextEffectWhiteLow text-2xl cursor-pointer"
+            class="w-full h-9 md:h-12 EditButton relative items-center text-center MatrixTextEffectWhiteLow text-2xl cursor-pointer animate__animated <%= animation%> <%= animationSpeed%>"
+            style="animation-delay: <%= getDelay(animationDelay) %>ms"
           >
             Edit Exercise
           </button>
@@ -92,7 +106,8 @@
 
         <% if (!!prereqName) { %>
         <a
-          class="flex MatrixBoxEffectGrey w-full bg-darkSurface-a30 bg-opacity-30 items-center cursor-pointer"
+          class="flex MatrixBoxEffectGrey w-full bg-darkSurface-a30 bg-opacity-30 items-center cursor-pointer animate__animated <%= animation%> <%= animationSpeed%>"
+          style="animation-delay: <%= getDelay(animationDelay) %>ms"
           href="/exercise/<%= prereqID %>"
         >
           <div

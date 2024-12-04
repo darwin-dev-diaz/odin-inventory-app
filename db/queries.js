@@ -3,7 +3,7 @@ const capitalize = require("../util/capitalize");
 const ytToImg = require("../util/ytToImg");
 
 async function getEverySkill() {
-  const { rows } = await pool.query("SELECT * FROM skills ORDER BY id");
+  const { rows } = await pool.query("SELECT * FROM skills ORDER BY id ASC");
   return rows;
 }
 

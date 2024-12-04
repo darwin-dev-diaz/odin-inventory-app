@@ -566,6 +566,14 @@ video {
   position: sticky;
 }
 
+.bottom-\[-2\.5rem\] {
+  bottom: -2.5rem;
+}
+
+.left-1\/2 {
+  left: 50%;
+}
+
 .left-\[-2rem\] {
   left: -2rem;
 }
@@ -721,8 +729,17 @@ video {
   max-width: 36rem;
 }
 
+.-translate-x-1\/2 {
+  --tw-translate-x: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 .translate-y-\[-50\%\] {
   --tw-translate-y: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -789,10 +806,6 @@ video {
 
 .justify-self-stretch {
   justify-self: stretch;
-}
-
-.overflow-y-auto {
-  overflow-y: auto;
 }
 
 .rounded-sm {
@@ -920,18 +933,13 @@ video {
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
+.blur {
+  --tw-blur: blur(8px);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
 .grayscale {
   --tw-grayscale: grayscale(100%);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
-.invert {
-  --tw-invert: invert(100%);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
-.sepia {
-  --tw-sepia: sepia(100%);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
@@ -1123,7 +1131,6 @@ video {
 }
 
 .MatrixBoxEffectGrey {
-  fill: #7de17dbf;
   box-shadow: 0 0 1px var(--color-surface-a30), 0 0 5px var(--color-surface-a30);
   border-radius: 0.125rem;
   border-color: #5f5f5f80;
@@ -1217,6 +1224,10 @@ video {
 
 .btn-3:hover p {
   animation: blink 0.025s linear infinite;
+}
+
+.blink {
+  animation: blink 0.5s linear infinite;
 }
 
 @keyframes blink {
@@ -1546,6 +1557,112 @@ video {
           backdrop-filter: blur(10px);
 }
 
+.div-3 {
+  line-height: 42px;
+  border: none;
+  position: relative;
+}
+
+.div-3 .bt-hover {
+  z-index: 50;
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.div-3:before,
+.div-3:after {
+  z-index: 99;
+  position: absolute;
+  content: "";
+  right: 0;
+  top: 0;
+  background: #70707079;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 5px #70707079, 0 0 15px #70707079;
+}
+
+.div-3:before {
+  height: 0%;
+  width: 2px;
+}
+
+.div-3:after {
+  width: 0%;
+  height: 2px;
+}
+
+.div-3:hover {
+  box-shadow: 0 0 15px #70707079, 0 0 5px #70707079;
+  border-color: var(--greenTrans);
+  border-width: 2px;
+}
+
+.div-3:hover:before {
+  height: 100%;
+}
+
+.div-3:hover:after {
+  width: 100%;
+  border-radius: 0.125rem;
+}
+
+.div-3 .bt-hover:hover {
+  color: #70707079;
+  text-shadow: 0 0 5px #70707079, 0 0 15px #70707079;
+}
+
+.div-3 .bt-hover:before,
+.div-3 .bt-hover:after {
+  border-radius: 0.125rem;
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 0;
+  background: #70707079;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 5px #70707079, 0 0 15px #70707079;
+}
+
+.div-3 .bt-hover:before {
+  width: 2px;
+  height: 0%;
+}
+
+.div-3 .bt-hover:after {
+  width: 0%;
+  height: 2px;
+}
+
+.div-3 .bt-hover:hover:before {
+  height: 100%;
+}
+
+.div-3 .bt-hover:hover:after {
+  width: 100%;
+}
+
+/* .div-3:hover .name {
+  color: #7de17dbf;
+  text-shadow: 0 0 5px #7de17d80, 0 0 15px rgba(125, 250, 125, 1);
+} */
+
+.MatrixBoxEffectGrey {
+  box-shadow: 0 0 1px #4e4e4e, 0 0 5px #4e4e4e;
+  border-radius: 0.125rem;
+  border-color: #5f5f5f80;
+  border-width: 0.5px;
+}
+
+.hiddefdsafn {
+  /* display: hidden; */
+}
+
+.hover\:bg-\[\#7070702b\]:hover {
+  background-color: #7070702b;
+}
+
 @media (min-width: 768px) {
   .md\:col-span-1 {
     grid-column: span 1 / span 1;
@@ -1654,14 +1771,6 @@ video {
 }
 
 @media (min-width: 1024px) {
-  .lg\:h-\[85vh\] {
-    height: 85vh;
-  }
-
-  .lg\:h-screen {
-    height: 100vh;
-  }
-
   .lg\:max-w-5xl {
     max-width: 64rem;
   }
@@ -1676,10 +1785,6 @@ video {
 
   .lg\:gap-9 {
     gap: 2.25rem;
-  }
-
-  .lg\:overflow-hidden {
-    overflow: hidden;
   }
 
   .lg\:text-xl {

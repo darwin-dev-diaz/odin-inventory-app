@@ -69,19 +69,26 @@ What pages do i need
 
 TODO:
 [x] - add the thumbnails into the db somehow
-[] - hook up back end to exercises - add pictures to db
-[] - hook up progressions screen - add pictures to db
-[] - hook up progression screen - add pictures to db
+[x] - hook up back end to exercises - add pictures to db
+[x] - hook up progressions screen - add pictures to db
+[x] - hook up progression screen - add pictures to db
 [x] - make header sticky
 [x] - activate header sticky style on scroll
+[] - make filtering work
+  - filter by difficulty
+  - filter by category
+[] - make searching work
+[] - make sorting work
+  - sort alphabetically
+  - sort by oldest
+  - sort by newest
+[] - make add exercise popup
+[] - make add exercise popup work
+
 [] - start using the railway database
-[] - add the add exercise popup
 [] - make creating an exercise possible
-[] - hook up back end
 [] - polish
 [] - light mode
-
-
 
 <!-- <% else if (i === progressionArr.length - 1){%>
     <div class="w-full h-full col-span-full flex justify-center items-center">

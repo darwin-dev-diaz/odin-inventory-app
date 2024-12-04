@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/output.css" />
     <link rel="stylesheet" href="/css/index.css" />
-    <title>Exercises | Calisthenics zone</title>
+    <title>Exercises | Calisthenics Matrix</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
       body {
@@ -18,11 +18,9 @@
         font-family: "VT323", monospace;
         color: white;
       }
-    </style>   
-
-  
+    </style>
   </head>
-  <body class="lg:h-screen lg:overflow-hidden">
+  <body class="">
     <%- include('./components/header.ejs') %>
     <div
       class="CONTENT z-40 p-[1.75rem] flex flex-col justify-center items-center md:items-start mx-auto px-5 lg:flex-row md:mt-14 lg:gap-9 lg:max-w-6xl"
@@ -33,24 +31,30 @@
       >
         <form
           class="w-full h-9 md:h-12 MatrixBoxEffectWhiteLow MatrixTextEffectWhiteLow relative flex selectionHoverLow transition"
+          id="search"
+          name="searchForm"
         >
           <input
             class="text-2xl md:text-3xl ml-4 bg-transparent w-full"
             placeholder="Search..."
+            name="searchQuery"
           />
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="28px"
-            viewBox="0 -960 960 960"
-            width="28px"
-            fill="#5f6368"
-            class="MatrixSVGEffectWhite absolute top-[50%] translate-y-[-50%] right-[1rem]"
-          >
-            <path
-              d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"
-              class="MatrixSVGEffectWhite"
-            />
-          </svg>
+          <button type="submit" class="cursor-pointer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="28px"
+              viewBox="0 -960 960 960"
+              width="28px"
+              fill="#5f6368"
+              id="searchSvg"
+              class="MatrixSVGEffectWhite absolute top-[50%] translate-y-[-50%] right-[1rem]"
+            >
+              <path
+                d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"
+                class="MatrixSVGEffectWhite"
+              />
+            </svg>
+          </button>
         </form>
         <div
           class="w-full h-9 md:h-12 MatrixBoxEffectWhiteLow MatrixTextEffectWhiteLow relative flex items-center selectionHoverLow transition"
@@ -88,16 +92,48 @@
             />
           </svg>
         </div>
+        <div
+          class="w-full h-9 md:h-12 MatrixBoxEffectWhiteLow MatrixTextEffectWhiteLow relative flex items-center selectionHoverLow transition"
+        >
+          <p class="text-2xl md:text-3xl ml-4">Sort by...</p>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="28px"
+            viewBox="0 -960 960 960"
+            width="24px"
+            fill="#5f6368"
+            class="MatrixSVGEffectWhite absolute top-[50%] translate-y-[-50%] right-[1rem]"
+          >
+            <path
+              d="M320-440v-287L217-624l-57-56 200-200 200 200-57 56-103-103v287h-80ZM600-80 400-280l57-56 103 103v-287h80v287l103-103 57 56L600-80Z"
+              class="MatrixSVGEffectWhite"
+            />
+          </svg>
+        </div>
       </div>
       <!-- exercises -->
       <!-- HERE -->
       <div
-        class="grid w-full grid-cols-2 gap-y-3 gap-x-3 max-w-[26.5rem] md:grid-cols-3 md:max-w-2xl mx-auto overflow-y-auto lg:h-[85vh]"
+        class="grid w-full grid-cols-2 gap-y-3 gap-x-3 max-w-[26.5rem] md:grid-cols-3 md:max-w-2xl mx-auto"
       >
         <% exercises.map((exercise, i) => { %> <%-
         include('./components/allExercisesComponent.ejs', {index: i + 1, link:
         exercise.video_url, name: exercise.name, ytToImg: ytToImg}) %> <%})%>
       </div>
     </div>
+
+    <script defer>
+      const searchForm = document.getElementById("search");
+      const input = searchForm.querySelector("input");
+      const searchSvg = document.getElementById("searchSvg");
+      input.addEventListener("keyup", (e) => {
+        console.log({ val: e.target.value });
+        if (e.target.value !== "") {
+          searchSvg.classList.add("blink");
+        } else {
+          searchSvg.classList.remove("blink");
+        }
+      });
+    </script>
   </body>
 </html>
