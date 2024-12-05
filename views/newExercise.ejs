@@ -95,11 +95,11 @@ animationDelaySave += delay; return animationDelaySave; } %>
           name="prerequisite"
           id="prerequisite"
         >
-          <option value="">-- Select prerequisite --</option>
+          <option value="0">-- Select prerequisite --</option>
           <% exercises.forEach(exercise => { %>
           <option value="<%= exercise.id %>"><%= exercise.name %></option>
           <% }) %>
-          <option value="">None</option>
+          <option value="0">None</option>
         </select>
 
         <button

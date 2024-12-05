@@ -85,7 +85,7 @@ TODO:
 [x] - build view for exercise creation
 [x] - make exercise creation work
 [x] - add form validation
-[] - remove default input highlight
+[x] - remove default input highlight
 [ ] - make admin controlls work
 
 - sort alphabetically
@@ -95,7 +95,7 @@ TODO:
   [] - make add exercise popup work
 
 [] - start using the railway database
-[] - make creating an exercise possible
+[] - create about page
 [] - polish
 [] - light mode
 

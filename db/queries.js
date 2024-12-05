@@ -114,6 +114,48 @@ async function getProgressionByID(end_skill_id) {
   return rows;
 }
 
+async function createExercise(params) {
+  // create in skills table
+
+  console.log(params);
+  const checks = () => {
+    return (
+      typeof params.exerciseName === "string" &&
+      typeof params.exerciseDescription === "string" &&
+      typeof params.exerciseVideoUrl === "string" &&
+      typeof Number(params.difficultyFilter) === "number" &&
+      Number(params.difficultyFilter) > 0 &&
+      typeof Number(params.prerequisite) === "number" &&
+      Number(params.prerequisite) > -1 &&
+      typeof params["categoryFilter[]"] === "object" &&
+      !!params["categoryFilter[]"].length
+    );
+  };
+  // get next row entry
+  const exerciseID = (
+    await pool.query("SELECT count(*) AS exact_count FROM skills")
+  ).rows;
+
+  console.log({ exerciseID, checks: checks() });
+
+  // skills entry
+  // const res1 = checks()
+  //   ? await pool.query(
+  //       "INSERT INTO skills(name, description, difficulty, prerequisite, video_url) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+  //       [
+  //         params.exerciseName,
+  //         params.exerciseDescription,
+  //         params.difficultyFilter,
+  //         params.prerequisite,
+  //         params.exerciseVideoUrl,
+  //       ]
+  //     )
+  //   : false;
+
+  // category skills entry
+  // console.log(res1);
+  // return res1;
+}
 module.exports = {
   getEverySkill,
   getExerciseByID,
@@ -126,4 +168,5 @@ module.exports = {
   filterSkillsByDifficulty,
   filterSkillsByCategory,
   searchSkills,
+  createExercise,
 };
