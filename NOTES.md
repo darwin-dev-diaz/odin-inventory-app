@@ -86,15 +86,8 @@ TODO:
 [x] - make exercise creation work
 [x] - add form validation
 [x] - remove default input highlight
+[x] - createExpert tag
 [ ] - make admin controlls work
-[] - createExpert tag
-
-- sort alphabetically
-- sort by oldest
-- sort by newest
-  [] - make add exercise popup
-  [] - make add exercise popup work
-
 [] - start using the railway database
 [] - create about page
 [] - polish

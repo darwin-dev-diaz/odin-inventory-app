@@ -17,6 +17,7 @@ const getExerciseByID = asyncHandler(async (req, res) => {
 
   res.render("exercise", {
     name: capitalize(exercise.name),
+    index: exercise.id,
     prereqName: prerequisteExercise
       ? capitalize(prerequisteExercise.name)
       : null,
@@ -30,6 +31,10 @@ const getExerciseByID = asyncHandler(async (req, res) => {
       ? ytToImg(prerequisteExercise.video_url)
       : null,
   });
+});
+
+const postDeleteExercise = asyncHandler(async (req, res) => {
+  res.redirect("/exercises/");
 });
 
 module.exports = {
