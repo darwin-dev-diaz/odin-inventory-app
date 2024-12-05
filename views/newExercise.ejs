@@ -58,7 +58,11 @@ animationDelaySave += delay; return animationDelaySave; } %>
         />
         <input
           class="text-2xl md:text-3xl pl-4 py-2 bg-transparent w-full MatrixBoxEffectGreyHigh selectionHoverLow transition"
+          type="url"
+          pattern="^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$"
           placeholder="Youtube video url..."
+          oninvalid="this.setCustomValidity('pattern: https://www.youtube.com/watch?v=[videoID]')"
+          oninput="this.setCustomValidity('')"
           name="exerciseVideoUrl"
           id="exerciseVideoUrl"
           required
@@ -91,11 +95,11 @@ animationDelaySave += delay; return animationDelaySave; } %>
           name="prerequisite"
           id="prerequisite"
         >
-          <option value="none">-- Select prerequisite --</option>
+          <option value="">-- Select prerequisite --</option>
           <% exercises.forEach(exercise => { %>
           <option value="<%= exercise.id %>"><%= exercise.name %></option>
           <% }) %>
-          <option value="null">None</option>
+          <option value="">None</option>
         </select>
 
         <button
@@ -119,6 +123,9 @@ animationDelaySave += delay; return animationDelaySave; } %>
         });
       });
 
+      let checkboxChecked = 0;
+      let radioChecked = false;
+
       const checkboxes = document.querySelectorAll(".optionCheckBox");
       checkboxes.forEach((li) => {
         const input = li.querySelector("input");
@@ -126,6 +133,9 @@ animationDelaySave += delay; return animationDelaySave; } %>
 
         input.addEventListener("change", (e) => {
           label.classList.toggle("selectionHoverManual");
+          checkboxChecked = document.querySelectorAll(
+            "input[type=checkbox]:checked"
+          ).length;
         });
       });
 
@@ -139,13 +149,23 @@ animationDelaySave += delay; return animationDelaySave; } %>
         const label = li.querySelector("label");
 
         input.addEventListener("change", (e) => {
+          radioChecked = true;
           input.checked = true;
           resetRadioLabels();
           label.classList.toggle("selectionHoverManual");
         });
       });
 
-      
+      const form = document.querySelector("form");
+      form.addEventListener("submit", (e) => {
+        if (!checkboxChecked) {
+          e.preventDefault();
+          alert("Select at least one category");
+        } else if (!radioChecked) {
+          e.preventDefault();
+          alert("Select a difficulty");
+        }
+      });
     </script>
   </body>
 </html>

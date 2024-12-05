@@ -82,11 +82,11 @@ TODO:
 [x] - making filtering work for categories
 [x] - make searching work
 [x] - add indication of filtering or search
-[ ] - build view for exercise creation
-[ ] - make exercise creation work
+[x] - build view for exercise creation
+[x] - make exercise creation work
+[] - add form validation
 [ ] - make admin controlls work
 [] - remove default input highlight
-[] - add form validation
 
 - sort alphabetically
 - sort by oldest
