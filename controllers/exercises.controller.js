@@ -38,10 +38,9 @@ const getExercises = asyncHandler(async (req, res) => {
     ...category,
     name: capitalize(category.name),
   }));
-  // const test = await query.filterSkillsByDifficulty();
 
   res.render("exercises", {
-    exercises: exercises,
+    exercises,
     ytToImg,
     difficulties,
     categories,

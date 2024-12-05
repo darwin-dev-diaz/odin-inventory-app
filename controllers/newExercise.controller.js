@@ -25,11 +25,10 @@ const postNewExercise = asyncHandler(async (req, res) => {
   if (typeof req.body["categoryFilter[]"] === "string")
     req.body["categoryFilter[]"] = [req.body["categoryFilter[]"]];
   req.body.exerciseName = capitalize(req.body.exerciseName);
+  if (!Number(req.body.prerequisite)) req.body.prerequisite = null;
 
   await query.createExercise(req.body);
-  const { exercises, categories, difficulties } = await getData();
-
-  res.render("newExercise", { exercises, categories, difficulties });
+  res.redirect("/exercises/");
 });
 
 module.exports = {

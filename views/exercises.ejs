@@ -1,3 +1,8 @@
+<% const animationDelay = 30 %>
+<!-- Increase to 250ms -->
+<% let animationDelaySave = 0 %> <% const getDelay = (delay) => {
+animationDelaySave += delay; return animationDelaySave; } %>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -147,8 +152,9 @@
           class="grid w-full grid-cols-2 gap-y-3 gap-x-3 max-w-[26.5rem] md:grid-cols-3 md:max-w-2xl mx-auto"
         >
           <% exercises.map((exercise, i) => { %> <%-
-          include('./components/allExercisesComponent.ejs', {index: i + 1, link:
-          exercise.video_url, name: exercise.name, ytToImg: ytToImg}) %> <%})%>
+          include('./components/allExercisesComponent.ejs', {index: exercise.id, delay: getDelay(animationDelay),
+          link: exercise.video_url, name: exercise.name, ytToImg: ytToImg}) %>
+          <%})%>
         </div>
       </div>
     </div>
