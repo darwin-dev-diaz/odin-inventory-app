@@ -36,7 +36,7 @@ async function filterSkillsByDifficulty(arr) {
 }
 async function filterSkillsByCategory(arr) {
   const query =
-    "SELECT s.* FROM skills AS s INNER JOIN skills_category AS sc ON s.id = sc.skill_id WHERE sc.category_id IN (" +
+    "SELECT DISTINCT s.* FROM skills AS s INNER JOIN skills_category AS sc ON s.id = sc.skill_id WHERE sc.category_id IN (" +
     arr.join(", ") +
     ")";
 
