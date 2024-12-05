@@ -117,7 +117,6 @@ async function getProgressionByID(end_skill_id) {
 async function createExercise(params) {
   // create in skills table
 
-  console.log(params);
   const checks = () => {
     return (
       typeof params.exerciseName === "string" &&
@@ -131,29 +130,39 @@ async function createExercise(params) {
       !!params["categoryFilter[]"].length
     );
   };
-  // get next row entry
-  const exerciseID = (
-    await pool.query("SELECT count(*) AS exact_count FROM skills")
-  ).rows;
-
-  console.log({ exerciseID, checks: checks() });
-
   // skills entry
-  // const res1 = checks()
-  //   ? await pool.query(
-  //       "INSERT INTO skills(name, description, difficulty, prerequisite, video_url) VALUES ($1, $2, $3, $4, $5) RETURNING *",
-  //       [
-  //         params.exerciseName,
-  //         params.exerciseDescription,
-  //         params.difficultyFilter,
-  //         params.prerequisite,
-  //         params.exerciseVideoUrl,
-  //       ]
-  //     )
-  //   : false;
+  const res1 = checks()
+    ? await pool.query(
+        "INSERT INTO skills(name, description, difficulty, prerequisite, video_url) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+        [
+          params.exerciseName,
+          params.exerciseDescription,
+          params.difficultyFilter,
+          params.prerequisite || null,
+          params.exerciseVideoUrl,
+        ]
+      )
+    : false;
+
+  // get next row entry
+  const exerciseID = Number(
+    (await pool.query("SELECT id AS exact_count FROM skills ORDER BY id DESC"))
+      .rows[0].exact_count
+  );
 
   // category skills entry
-  // console.log(res1);
+  const str2 =
+    "INSERT INTO skills_category (skill_id, category_id) VALUES " +
+    params["categoryFilter[]"]
+      .map((_, i) => `($${i * 2 + 1}, $${i * 2 + 2})`)
+      .join(", ") +
+    " RETURNING *";
+  const arr2 = params["categoryFilter[]"].flatMap((c) => [exerciseID, c]);
+
+  console.log({ str2, arr2, exerciseID });
+  const res2 = checks() ? await pool.query(str2, arr2) : false;
+
+  console.log({ res1, res2 });
   // return res1;
 }
 module.exports = {

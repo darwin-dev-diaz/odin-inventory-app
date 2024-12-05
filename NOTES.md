@@ -87,6 +87,7 @@ TODO:
 [x] - add form validation
 [x] - remove default input highlight
 [ ] - make admin controlls work
+[] - createExpert tag
 
 - sort alphabetically
 - sort by oldest

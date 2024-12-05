@@ -24,6 +24,7 @@ const getNewExercise = asyncHandler(async (req, res) => {
 const postNewExercise = asyncHandler(async (req, res) => {
   if (typeof req.body["categoryFilter[]"] === "string")
     req.body["categoryFilter[]"] = [req.body["categoryFilter[]"]];
+  req.body.exerciseName = capitalize(req.body.exerciseName);
 
   await query.createExercise(req.body);
   const { exercises, categories, difficulties } = await getData();
