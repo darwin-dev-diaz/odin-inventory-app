@@ -84,9 +84,9 @@ TODO:
 [x] - add indication of filtering or search
 [x] - build view for exercise creation
 [x] - make exercise creation work
-[] - add form validation
-[ ] - make admin controlls work
+[x] - add form validation
 [] - remove default input highlight
+[ ] - make admin controlls work
 
 - sort alphabetically
 - sort by oldest

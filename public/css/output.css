@@ -1782,6 +1782,13 @@ video {
   background: white;
 }
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
 .hover\:bg-\[\#7070702b\]:hover {
   background-color: #7070702b;
 }

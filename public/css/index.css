@@ -181,7 +181,6 @@
   transition: all 0.1s linear;
 }
 
-
 .btn-3 {
   width: fit-content;
   height: fit-content;
@@ -697,13 +696,11 @@
   user-select: none;
 }
 
-
 .container input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
 }
-
 
 .checkmark {
   position: absolute;
@@ -715,16 +712,13 @@
   border-radius: 50%;
 }
 
-
 .container:hover input ~ .checkmark {
   background-color: #ccc;
 }
 
-
 .container input:checked ~ .checkmark {
   background-color: #2196f3;
 }
-
 
 .checkmark:after {
   content: "";
@@ -745,4 +739,11 @@
   height: 8px;
   border-radius: 50%;
   background: white;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
 }
