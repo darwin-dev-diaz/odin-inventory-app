@@ -54,6 +54,8 @@ animationDelaySave += delay; return animationDelaySave; } %>
           placeholder="Exercise description..."
           name="exerciseDescription"
           id="exerciseDescription"
+          minlength="64"
+          maxlength="128"
           required
         />
         <input
@@ -155,7 +157,9 @@ animationDelaySave += delay; return animationDelaySave; } %>
           label.classList.toggle("selectionHoverManual");
         });
       });
-
+      const descriptionInputLength = document.getElementById(
+        "exerciseDescription"
+      ).value.length;
       const form = document.querySelector("form");
       form.addEventListener("submit", (e) => {
         if (!checkboxChecked) {
@@ -164,6 +168,12 @@ animationDelaySave += delay; return animationDelaySave; } %>
         } else if (!radioChecked) {
           e.preventDefault();
           alert("Select a difficulty");
+        } else if (
+          descriptionInputLength > 63 &&
+          descriptionInputLength < 129
+        ) {
+          e.preventDefault();
+          alert("Description must be between 64 and 128 characters");
         }
       });
     </script>
