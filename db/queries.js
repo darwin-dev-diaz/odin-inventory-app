@@ -158,6 +158,13 @@ async function createExercise(params) {
   const arr2 = params["categoryFilter[]"].flatMap((c) => [exerciseID, c]);
   const res2 = checks() ? await pool.query(str2, arr2) : false;
 }
+
+async function deleteExerciseByID(exerciseID) {
+  const { rows } = pool.query("DELETE FROM skills WHERE id = $1 RETURNING *", [
+    exerciseID,
+  ]);
+  return rows;
+}
 module.exports = {
   getEverySkill,
   getExerciseByID,
@@ -171,4 +178,5 @@ module.exports = {
   filterSkillsByCategory,
   searchSkills,
   createExercise,
+  deleteExerciseByID,
 };

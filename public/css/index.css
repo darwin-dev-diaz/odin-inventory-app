@@ -364,11 +364,18 @@
   border-color: #e17d7dbf;
   border-width: 0.5px;
 }
-.ExpertTag {
+.ErrorTag {
   background-color: #d800003b;
   box-shadow: 0 0 2px #d80000af, 0 0 7px #d80000af;
   border-radius: 0.125rem;
   border-color: #d80000af;
+  border-width: 0.5px;
+}
+.ExpertTag {
+  background-color: #e17d7d3b;
+  box-shadow: 0 0 2px #e17d7dbf, 0 0 7px #e17d7dbf;
+  border-radius: 0.125rem;
+  border-color: #e17d7dbf;
   border-width: 0.5px;
 }
 
@@ -388,7 +395,7 @@
   color: #161616;
   overflow: hidden;
   clip: rect(0, 900px, 0, 0);
-  animation: noise-before 3s infinite linear alternate-reverse;
+  animation: noise-before 1s infinite linear alternate-reverse;
 }
 
 .glitch:after {
@@ -401,7 +408,7 @@
 
   overflow: hidden;
   clip: rect(0, 900px, 0, 0);
-  animation: noise-after 2s infinite linear alternate-reverse;
+  animation: noise-after 1s infinite linear alternate-reverse;
 }
 
 @keyframes noise-before {
@@ -757,7 +764,7 @@ button:focus {
 .glitch-expert {
   position: relative;
   color: #fff;
-  letter-spacing: 20px;
+
   z-index: 1;
 }
 

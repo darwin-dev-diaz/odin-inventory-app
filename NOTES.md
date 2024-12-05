@@ -87,6 +87,7 @@ TODO:
 [x] - add form validation
 [x] - remove default input highlight
 [x] - createExpert tag
+[] - fix expert tag
 [ ] - make admin controlls work
 [] - start using the railway database
 [] - create about page

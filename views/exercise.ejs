@@ -32,8 +32,16 @@ animationDelaySave; } %>
   <body class="">
     <%- include('./components/header.ejs') %>
     <div
-      class="CONTENT z-40 p-[1.75rem] flex flex-col justify-center items-center mx-auto px-5 max-w-xl md:max-w-4xl lg:max-w-5xl md:flex-row md: gap-8 md:items-start"
+      class="CONTENT z-40 p-[1.75rem] flex flex-col justify-center items-center mx-auto px-5 max-w-xl md:max-w-4xl lg:max-w-5xl md: gap-8 md:items-start md:grid md:grid-cols-2"
     >
+      <% if (error) {%>
+
+      <p
+        class="w-full h-fit MatrixBoxEffectGrey ErrorTag bg-darkSurface-a30 bg-opacity-30 text-2xl md:text-3xl p-3 MatrixTextEffectWhiteLow mb-3 col-span-2"
+      >
+        Wrong Password. Admin controls require the correct admin password.
+      </p>
+      <%}%>
       <div class="max-w-md justify-self-stretch w-full">
         <div class="flex w-full gap-1 mb-2">
           <% categories.map(category => { %> <%-
@@ -56,23 +64,20 @@ animationDelaySave; } %>
           class="max-w-xl w-full h-fit bg-opacity-30 text-3xl p-3 MatrixTextEffectWhiteLow <%= difficulty %>Tag"
         >
           Difficulty: <% if (difficulty === "Advanced") { %>
-          <span class="glitch-wrapper">
-            <span
-              class="glitch tracking-widest"
-              data-glitch="<%= difficulty %>"
-            >
-              <%= difficulty %>
-            </span>
+
+          <span class="glitch tracking-widest" data-glitch="<%= difficulty %>">
+            <%= difficulty %>
           </span>
+
           <% } else if (difficulty === "Expert"){ %>
-          <span class="glitch-expert-wrapper">
-            <span
-              class="glitch-expert tracking-widest uppercase"
-              data-glitch-expert="<%= difficulty %>"
-            >
-              <%= difficulty %>
-            </span>
+
+          <span
+            class="glitch-expert tracking-widest uppercase"
+            data-glitch-expert="<%= difficulty %>"
+          >
+            <%= difficulty %>
           </span>
+
           <% } else { %> <%= difficulty %> <% } %>
         </div>
       </div>
@@ -106,13 +111,14 @@ animationDelaySave; } %>
             Delete Exercise
           </button>
           <div
-            class="hidden fixed z-40 w-screen h-screen bg-[#00000078] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 backdrop-blur-sm animate__animated"
+            class="hidden fixed z-40 w-screen h-screen bg-[#00000078] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 backdrop-blur-sm animate__animated animate__faster"
             id="deleteScreen"
           ></div>
           <form
-            class="hidden fixed z-50 w-[90%] max-w-2xl rounded-sm h-fit py-6 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 MatrixBoxEffectGrey bg-[#696969f1] flex flex-col gap-6 p-4 animate__animated"
+            class="hidden fixed z-50 w-[90%] max-w-2xl rounded-sm h-fit py-6 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 MatrixBoxEffectGrey bg-[#696969f1] flex flex-col gap-6 p-4 animate__animated animate__faster"
             action="/exercise/<%= index %>/delete"
             method="POST"
+            name="deleteForm"
             id="deleteForm"
           >
             <label
@@ -129,12 +135,15 @@ animationDelaySave; } %>
             </label>
             <div class="flex gap-2">
               <button
-                class="w-full h-9 md:h-12 EditButton relative items-center text-center MatrixTextEffectWhiteLow text-xl cursor-pointer animate__animated <%= animation%> <%= animationSpeed%>"
+                type="button"
+                class="w-full h-9 md:h-12 EditButton relative items-center text-center MatrixTextEffectWhiteLow text-xl md:text-2xl cursor-pointer animate__animated <%= animation%> <%= animationSpeed%>"
                 style="animation-delay: <%= getDelay(animationDelay) %>ms"
+                id="formCancelButton"
               >
                 Cancel</button
               ><button
-                class="w-full h-9 md:h-12 MatrixBoxEffectWhiteLow relative items-center DeleteButton text-center MatrixTextEffectWhiteLow text-xl cursor-pointer animate__animated <%= animation%> <%= animationSpeed%>"
+                type="submit"
+                class="w-full h-9 md:h-12 MatrixBoxEffectWhiteLow relative items-center DeleteButton text-center MatrixTextEffectWhiteLow text-xl md:text-2xl cursor-pointer animate__animated <%= animation%> <%= animationSpeed%>"
                 style="animation-delay: <%= getDelay(animationDelay) %>ms"
               >
                 Delete Exercise
@@ -177,6 +186,7 @@ animationDelaySave; } %>
       const deleteExerciseButton = document.getElementById(
         "deleteExerciseButton"
       );
+      const formCancelButton = document.getElementById("formCancelButton");
       const deleteScreen = document.getElementById("deleteScreen");
       const deleteForm = document.getElementById("deleteForm");
 
@@ -187,17 +197,19 @@ animationDelaySave; } %>
         });
       });
 
-      deleteScreen.addEventListener("click", (e) => {
-        [deleteScreen, deleteForm].forEach((x) => {
-          x.classList.add("animate__fadeOut");
-          x.classList.remove("animate__fadeIn");
-          x.addEventListener(
-            "animationend",
-            () => {
-              x.classList.add("hidden");
-            },
-            { once: true }
-          );
+      [formCancelButton, deleteScreen].forEach((y) => {
+        y.addEventListener("click", (e) => {
+          [deleteScreen, deleteForm].forEach((x) => {
+            x.classList.add("animate__fadeOut");
+            x.classList.remove("animate__fadeIn");
+            x.addEventListener(
+              "animationend",
+              () => {
+                x.classList.add("hidden");
+              },
+              { once: true }
+            );
+          });
         });
       });
     </script>
