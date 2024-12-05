@@ -64,6 +64,15 @@ animationDelaySave; } %>
               <%= difficulty %>
             </span>
           </span>
+          <% } else if (difficulty === "Expert"){ %>
+          <span class="glitch-expert-wrapper">
+            <span
+              class="glitch-expert tracking-widest uppercase"
+              data-glitch-expert="<%= difficulty %>"
+            >
+              <%= difficulty %>
+            </span>
+          </span>
           <% } else { %> <%= difficulty %> <% } %>
         </div>
       </div>
