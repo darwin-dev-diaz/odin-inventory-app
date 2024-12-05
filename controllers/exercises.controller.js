@@ -11,23 +11,23 @@ const getExercises = asyncHandler(async (req, res) => {
     exercises = await query.filterSkillsByDifficulty(
       req.query.difficultyFilter
     );
-    filterPhrase = "Filtering by difficulties:";
+    filterPhrase = "Filtering by difficulties";
     filterSettings = (await query.getDifficulties(req.query.difficultyFilter))
       .map((x) => capitalize(x.name))
       .join(", ");
   } else if (req.query.categoryFilter) {
     exercises = await query.filterSkillsByCategory(req.query.categoryFilter);
-    filterPhrase = "Filtering by categories:";
+    filterPhrase = "Filtering by categories";
     filterSettings = (await query.getCategories(req.query.categoryFilter))
       .map((x) => capitalize(x.name))
       .join(", ");
   } else if (req.query.searchQuery) {
     exercises = await query.searchSkills(req.query.searchQuery);
-    filterPhrase = "Showing search results for:";
+    filterPhrase = "Showing search results for";
     filterSettings = `"${req.query.searchQuery}"`;
   } else {
     exercises = await query.getEverySkill();
-    filterPhrase = "All exercises:";
+    filterPhrase = "All exercises";
   }
 
   const difficulties = (await query.getDifficulties()).map((difficulty) => ({
@@ -41,6 +41,7 @@ const getExercises = asyncHandler(async (req, res) => {
 
   res.render("exercises", {
     exercises,
+    exercisesLength: exercises.length,
     ytToImg,
     difficulties,
     categories,
