@@ -33,7 +33,119 @@ animationDelaySave += delay; return animationDelaySave; } %>
   <body class="">
     <%- include('./components/header.ejs') %>
     <div
-      class="CONTENT z-40 p-[1.75rem] flex flex-col justify-center items-center mx-auto px-5 max-w-xl md:max-w-4xl lg:max-w-5xl md:flex-row md: gap-8 md:items-start"
-    ></div>
+      class="CONTENT z-40 p-[1.75rem] flex flex-col justify-center items-center mx-auto px-5 max-w-xl md:max-w-4xl md:flex-row md: gap-8 md:items-start"
+    >
+      <form
+        class="w-full relative flex flex-col gap-3 mb-10"
+        id="newExerciseForm"
+        name="newExerciseForm"
+        method="POST"
+        action="/newExercise/"
+      >
+        <input
+          class="text-2xl md:text-3xl pl-4 py-2 bg-transparent w-full MatrixBoxEffectGreyHigh selectionHoverLow transition"
+          placeholder="Exercise name..."
+          name="exerciseName"
+          id="exerciseName"
+          required
+        />
+        <input
+          class="text-2xl md:text-3xl pl-4 py-2 bg-transparent w-full MatrixBoxEffectGreyHigh selectionHoverLow transition"
+          placeholder="Exercise description..."
+          name="exerciseDescription"
+          id="exerciseDescription"
+          required
+        />
+        <input
+          class="text-2xl md:text-3xl pl-4 py-2 bg-transparent w-full MatrixBoxEffectGreyHigh selectionHoverLow transition"
+          placeholder="Youtube video url..."
+          name="exerciseVideoUrl"
+          id="exerciseVideoUrl"
+          required
+        />
+
+        <div class="CATEGORIES MatrixBoxEffectGreyHigh p-4">
+          <h3 class="text-2xl md:text-3xl mb-3 text-[rgb(155,163,175)]">
+            Select categories (1 required)
+          </h3>
+          <ul class="grid w-full gap-6 md:grid-cols-2">
+            <% categories.map(category =>{ %> <%-
+            include('./components/optionCheckBox.ejs', {option: category.name,
+            value: category.id, filterType: "category"}) %> <%})%>
+          </ul>
+        </div>
+
+        <div class="DIFFICULTY MatrixBoxEffectGreyHigh p-4">
+          <h3 class="text-2xl md:text-3xl mb-3 text-[rgb(155,163,175)]">
+            Select difficulty
+          </h3>
+          <ul class="grid w-full gap-6 md:grid-cols-2">
+            <% difficulties.map(difficulty =>{ %> <%-
+            include('./components/optionRadio.ejs', {option: difficulty.name,
+            value: difficulty.id, filterType: "difficulty"}) %> <%})%>
+          </ul>
+        </div>
+
+        <select
+          class="text-2xl md:text-3xl pl-4 py-2 bg-transparent w-full MatrixBoxEffectGreyHigh selectionHoverLow transition text-[rgb(155,163,175)]"
+          name="prerequisite"
+          id="prerequisite"
+        >
+          <option value="none">-- Select prerequisite --</option>
+          <% exercises.forEach(exercise => { %>
+          <option value="<%= exercise.id %>"><%= exercise.name %></option>
+          <% }) %>
+          <option value="null">None</option>
+        </select>
+
+        <button
+          type="submit"
+          class="col-span-3 MatrixBoxEffectGreyHigh w-full p-3 rounded-sm cursor-pointer selectionHoverLow text-xl md:text-2xl mb-9"
+        >
+          Create exercise
+        </button>
+      </form>
+    </div>
+    <script defer>
+      const inputs = document.querySelectorAll("input");
+
+      inputs.forEach((input) => {
+        input.addEventListener("keyup", (e) => {
+          if (e.target.value !== "") {
+            e.target.classList.add("selectionHoverManual");
+          } else {
+            e.target.classList.remove("selectionHoverManual");
+          }
+        });
+      });
+
+      const checkboxes = document.querySelectorAll(".optionCheckBox");
+      checkboxes.forEach((li) => {
+        const input = li.querySelector("input");
+        const label = li.querySelector("label");
+
+        input.addEventListener("change", (e) => {
+          label.classList.toggle("selectionHoverManual");
+        });
+      });
+
+      const radios = document.querySelectorAll(".optionRadio");
+      const resetRadioLabels = () => {
+        const ls = document.querySelectorAll(".optionRadio label");
+        ls.forEach((l) => l.classList.remove("selectionHoverManual"));
+      };
+      radios.forEach((li) => {
+        const input = li.querySelector("input");
+        const label = li.querySelector("label");
+
+        input.addEventListener("change", (e) => {
+          input.checked = true;
+          resetRadioLabels();
+          label.classList.toggle("selectionHoverManual");
+        });
+      });
+
+      
+    </script>
   </body>
 </html>

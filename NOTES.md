@@ -85,6 +85,8 @@ TODO:
 [ ] - build view for exercise creation
 [ ] - make exercise creation work
 [ ] - make admin controlls work
+[] - remove default input highlight
+[] - add form validation
 
 - sort alphabetically
 - sort by oldest
