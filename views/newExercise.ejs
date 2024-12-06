@@ -1,8 +1,6 @@
-<% const animation = "animate__fadeIn" %> <% const animationSpeed =
-"animate__faster" %> <% const animationDelay = 75 %>
-<!-- Increase to 250ms -->
-<% let animationDelaySave = 0 %> <% const getDelay = (delay) => {
-animationDelaySave += delay; return animationDelaySave; } %>
+<% const animationDelay = 50; %> <% let animationDelaySave = 0; %> <% const
+getDelay = (delay) => { animationDelaySave += delay; return animationDelaySave;
+}; %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,14 +41,16 @@ animationDelaySave += delay; return animationDelaySave; } %>
         action="/newExercise/"
       >
         <input
-          class="text-2xl md:text-3xl pl-4 py-2 bg-transparent w-full MatrixBoxEffectGreyHigh selectionHoverLow transition"
+          class="text-2xl md:text-3xl pl-4 py-2 bg-transparent w-full MatrixBoxEffectGreyHigh selectionHoverLow transition animate__animated animate__faster animate__fadeIn"
           placeholder="Exercise name..."
           name="exerciseName"
           id="exerciseName"
+          style="animation-delay: <%= getDelay(animationDelay) %>ms"
           required
         />
         <input
-          class="text-2xl md:text-3xl pl-4 py-2 bg-transparent w-full MatrixBoxEffectGreyHigh selectionHoverLow transition"
+          class="text-2xl md:text-3xl pl-4 py-2 bg-transparent w-full MatrixBoxEffectGreyHigh selectionHoverLow transition animate__animated animate__faster animate__fadeIn"
+          style="animation-delay: <%= getDelay(animationDelay) %>ms"
           placeholder="Exercise description..."
           name="exerciseDescription"
           id="exerciseDescription"
@@ -59,7 +59,8 @@ animationDelaySave += delay; return animationDelaySave; } %>
           required
         />
         <input
-          class="text-2xl md:text-3xl pl-4 py-2 bg-transparent w-full MatrixBoxEffectGreyHigh selectionHoverLow transition"
+          class="text-2xl md:text-3xl pl-4 py-2 bg-transparent w-full MatrixBoxEffectGreyHigh selectionHoverLow transition animate__animated animate__faster animate__fadeIn"
+          style="animation-delay: <%= getDelay(animationDelay) %>ms"
           type="url"
           pattern="^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$"
           placeholder="Youtube video url..."
@@ -70,7 +71,10 @@ animationDelaySave += delay; return animationDelaySave; } %>
           required
         />
 
-        <div class="CATEGORIES MatrixBoxEffectGreyHigh p-4">
+        <div
+          class="CATEGORIES MatrixBoxEffectGreyHigh p-4 animate__animated animate__faster animate__fadeIn"
+          style="animation-delay: <%= getDelay(animationDelay) %>ms"
+        >
           <h3 class="text-2xl md:text-3xl mb-3 text-[rgb(155,163,175)]">
             Select categories (1 required)
           </h3>
@@ -82,7 +86,10 @@ animationDelaySave += delay; return animationDelaySave; } %>
           </ul>
         </div>
 
-        <div class="DIFFICULTY MatrixBoxEffectGreyHigh p-4">
+        <div
+          class="DIFFICULTY MatrixBoxEffectGreyHigh p-4 animate__animated animate__faster animate__fadeIn"
+          style="animation-delay: <%= getDelay(animationDelay) %>ms"
+        >
           <h3 class="text-2xl md:text-3xl mb-3 text-[rgb(155,163,175)]">
             Select difficulty
           </h3>
@@ -95,7 +102,8 @@ animationDelaySave += delay; return animationDelaySave; } %>
         </div>
 
         <select
-          class="text-2xl md:text-3xl pl-4 py-2 bg-transparent w-full MatrixBoxEffectGreyHigh selectionHoverLow transition text-[rgb(155,163,175)]"
+          class="text-2xl md:text-3xl pl-4 py-2 bg-transparent w-full MatrixBoxEffectGreyHigh selectionHoverLow transition text-[rgb(155,163,175)] animate__animated animate__faster animate__fadeIn"
+          style="animation-delay: <%= getDelay(animationDelay) %>ms"
           name="prerequisite"
           id="prerequisite"
         >
@@ -108,7 +116,8 @@ animationDelaySave += delay; return animationDelaySave; } %>
 
         <button
           type="submit"
-          class="col-span-3 MatrixBoxEffectGreyHigh w-full p-3 rounded-sm cursor-pointer selectionHoverLow text-xl md:text-2xl mb-9"
+          class="col-span-3 MatrixBoxEffectGreyHigh w-full p-3 rounded-sm cursor-pointer selectionHoverLow text-xl md:text-2xl mb-9 animate__animated animate__faster animate__fadeIn"
+          style="animation-delay: <%= getDelay(animationDelay) %>ms"
         >
           Create exercise
         </button>
