@@ -83,7 +83,7 @@ animationDelaySave += delay; return animationDelaySave; } %>
         </div>
         <form action="" class="hidden" id="difficulyForm">
           <ul class="grid w-full gap-6 md:grid-cols-3">
-            <% difficulties.map(difficulty => {%> <%-
+            <% allDifficulties.map(difficulty => {%> <%-
             include('./components/optionCheckBox.ejs', {option: difficulty.name,
             value: difficulty.id, filterType: "difficulty", checked: false}) %>
             <%})%>
@@ -124,7 +124,7 @@ animationDelaySave += delay; return animationDelaySave; } %>
           id="categoryForm"
         >
           <ul class="grid w-full gap-6 md:grid-cols-3">
-            <% categories.map(category => {%> <%-
+            <% allCategories.map(category => {%> <%-
             include('./components/optionCheckBox.ejs', {option: category.name,
             value: category.id, filterType: "category", checked: false}) %>
             <%})%>

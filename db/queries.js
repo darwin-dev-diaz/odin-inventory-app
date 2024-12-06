@@ -2,7 +2,7 @@ const pool = require("./pool");
 const capitalize = require("../util/capitalize");
 const ytToImg = require("../util/ytToImg");
 
-async function getEverySkill() {
+async function getEveryExercise() {
   const { rows } = await pool.query("SELECT * FROM skills ORDER BY id DESC");
   return rows;
 }
@@ -214,7 +214,7 @@ async function editExercise(params) {
   console.log({ str1, arr1, str2, arr2, str3, arr3 });
 }
 module.exports = {
-  getEverySkill,
+  getEveryExercise: getEveryExercise,
   getExerciseByID,
   getExerciseCategories,
   getExerciseDifficulty,

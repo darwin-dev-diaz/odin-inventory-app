@@ -79,7 +79,7 @@ getDelay = (delay) => { animationDelaySave += delay; return animationDelaySave;
             Select categories (1 required)
           </h3>
           <ul class="grid w-full gap-6 md:grid-cols-2">
-            <% categories.map(category =>{ %> <%-
+            <% allCategories.map(category =>{ %> <%-
             include('./components/optionCheckBox.ejs', {option: category.name,
             value: category.id, filterType: "category", checked: false}) %>
             <%})%>
@@ -94,7 +94,7 @@ getDelay = (delay) => { animationDelaySave += delay; return animationDelaySave;
             Select difficulty
           </h3>
           <ul class="grid w-full gap-6 md:grid-cols-2">
-            <% difficulties.map(difficulty =>{ %> <%-
+            <% allDifficulties.map(difficulty =>{ %> <%-
             include('./components/optionRadio.ejs', {option: difficulty.name,
             value: difficulty.id, filterType: "difficulty", checked: false}) %>
             <%})%>
@@ -108,7 +108,7 @@ getDelay = (delay) => { animationDelaySave += delay; return animationDelaySave;
           id="prerequisite"
         >
           <option value="0">-- Select prerequisite --</option>
-          <% exercises.forEach(exercise => { %>
+          <% allExercises.forEach(exercise => { %>
           <option value="<%= exercise.id %>"><%= exercise.name %></option>
           <% }) %>
           <option value="0">None</option>

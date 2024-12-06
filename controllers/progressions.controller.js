@@ -1,5 +1,4 @@
 const asyncHandler = require("express-async-handler");
-const ytToImg = require("../util/ytToImg");
 const query = require("../db/queries");
 
 const getProgressions = asyncHandler(async (req, res) => {
@@ -9,7 +8,6 @@ const getProgressions = asyncHandler(async (req, res) => {
     progressionsArrs: progressionsArrs,
     namesArr: namesArr,
   });
-  res.end();
 });
 
 module.exports = {

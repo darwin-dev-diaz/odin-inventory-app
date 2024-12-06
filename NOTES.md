@@ -5,7 +5,6 @@
 
 GOALS:
 
-- Light and dark theme ~~~~~~~~~~~~~~~~~~
 - 100 total exercises\
 - 10 total progressions
   One Arm Push-Up
@@ -19,7 +18,7 @@ GOALS:
   Full one arm handstand
   Dragon flag
 
-- ability to add more if you are an admin
+- ability to add more
 - ability to delete if you are an admin
 
 TODO:
@@ -95,6 +94,7 @@ TODO:
 [x] - connect edit to db
 great job so far
 
-[] - create about page
-[] - start using the railway database
+[x] - create about page
 [] - polish
+[] - start using the railway database
+[] - upload

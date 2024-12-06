@@ -1,6 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const query = require("../db/queries");
-const capitalize = require("../util/capitalize");
+
 const getProgression = asyncHandler(async (req, res) => {
   const rows = await query.getProgressionByID(req.params.progressionID);
 
