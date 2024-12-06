@@ -77,7 +77,8 @@ animationDelaySave += delay; return animationDelaySave; } %>
           <ul class="grid w-full gap-6 md:grid-cols-2">
             <% categories.map(category =>{ %> <%-
             include('./components/optionCheckBox.ejs', {option: category.name,
-            value: category.id, filterType: "category"}) %> <%})%>
+            value: category.id, filterType: "category", checked: false}) %>
+            <%})%>
           </ul>
         </div>
 
@@ -88,7 +89,8 @@ animationDelaySave += delay; return animationDelaySave; } %>
           <ul class="grid w-full gap-6 md:grid-cols-2">
             <% difficulties.map(difficulty =>{ %> <%-
             include('./components/optionRadio.ejs', {option: difficulty.name,
-            value: difficulty.id, filterType: "difficulty"}) %> <%})%>
+            value: difficulty.id, filterType: "difficulty", checked: false}) %>
+            <%})%>
           </ul>
         </div>
 
@@ -157,9 +159,11 @@ animationDelaySave += delay; return animationDelaySave; } %>
           label.classList.toggle("selectionHoverManual");
         });
       });
+
       const descriptionInputLength = document.getElementById(
         "exerciseDescription"
       ).value.length;
+
       const form = document.querySelector("form");
       form.addEventListener("submit", (e) => {
         if (!checkboxChecked) {

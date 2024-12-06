@@ -87,22 +87,13 @@ TODO:
 [x] - add form validation
 [x] - remove default input highlight
 [x] - createExpert tag
-[] - fix expert tag
+[x] - fix expert tag
 [ ] - make admin controlls work
+[x] - make delete work
+[] - edit
+[] - edit view (copy as much as possible from what you have )
+[] - connect edit to db
+
 [] - start using the railway database
 [] - create about page
 [] - polish
-[] - light mode
-
-<!-- <% else if (i === progressionArr.length - 1){%>
-    <div class="w-full h-full col-span-full flex justify-center items-center">
-      <p
-        class="text-center text-3xl md:text-4xl tracking-wider MatrixTextEffectWhiteLow"
-      >
-        One arm push up
-      </p>
-    </div>
-    <%}%> <% else {%>
-    <div class="bg-green-600 w-full h-full"></div>
-
-    <%}%>  -->

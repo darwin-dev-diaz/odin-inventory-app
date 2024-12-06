@@ -90,7 +90,6 @@ animationDelaySave; } %>
           <%= exercise.description %>
         </p>
 
-        <!-- <iframe class="w-full h-96 mb-7" src=""> </iframe> -->
         <iframe
           class="w-full aspect-video mb-7 animate__animated <%= animation%> <%= animationSpeed%>"
           style="animation-delay: <%= getDelay(animationDelay) %>ms"
@@ -111,8 +110,8 @@ animationDelaySave; } %>
             Delete Exercise
           </button>
           <div
-            class="hidden fixed z-40 w-screen h-screen bg-[#00000078] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 backdrop-blur-sm animate__animated animate__faster"
-            id="deleteScreen"
+            class="<%= editAuth ? '' : 'hidden' %> fixed z-40 w-screen h-screen bg-[#00000078] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 backdrop-blur-sm animate__animated animate__faster"
+            id="blackScreen"
           ></div>
           <form
             class="hidden fixed z-50 w-[90%] max-w-2xl rounded-sm h-fit py-6 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 MatrixBoxEffectGrey bg-[#696969f1] flex flex-col gap-6 p-4 animate__animated animate__faster"
@@ -154,9 +153,146 @@ animationDelaySave; } %>
           <button
             class="w-full h-9 md:h-12 EditButton relative items-center text-center MatrixTextEffectWhiteLow text-2xl cursor-pointer animate__animated <%= animation%> <%= animationSpeed%>"
             style="animation-delay: <%= getDelay(animationDelay) %>ms"
+            id="editExerciseButton"
           >
             Edit Exercise
           </button>
+          <form
+            class="hidden fixed z-50 w-[90%] max-w-2xl rounded-sm h-fit py-6 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 MatrixBoxEffectGrey bg-[#696969f1] flex flex-col gap-6 p-4 animate__animated animate__faster"
+            action="/exercise/<%= index %>/edit"
+            method="POST"
+            name="editFormAuth"
+            id="editFormAuth"
+          >
+            <label
+              class="text-2xl md:text-4xl text-center MatrixTextEffectWhiteLow flex flex-col gap-3"
+            >
+              Enter admin password to edit
+              <input
+                class="text-2xl md:text-3xl pl-4 py-2 bg-[#3737373b] w-full MatrixBoxEffectGreyHigh selectionHoverLow transition"
+                placeholder="Admin password..."
+                name="adminPassword"
+                id="adminPassword"
+                required
+              />
+            </label>
+            <div class="flex gap-2">
+              <button
+                type="button"
+                class="w-full h-9 md:h-12 EditButton relative items-center text-center MatrixTextEffectWhiteLow text-xl md:text-2xl cursor-pointer animate__animated <%= animation%> <%= animationSpeed%>"
+                style="animation-delay: <%= getDelay(animationDelay) %>ms"
+                id="formCancelButton"
+              >
+                Cancel</button
+              ><button
+                type="submit"
+                class="w-full h-9 md:h-12 MatrixBoxEffectWhiteLow relative items-center MediumTag text-center MatrixTextEffectWhiteLow text-xl md:text-2xl cursor-pointer animate__animated <%= animation%> <%= animationSpeed%>"
+                style="animation-delay: <%= getDelay(animationDelay) %>ms"
+              >
+                Edit Exercise
+              </button>
+            </div>
+          </form>
+
+          <%if(editAuth){%>
+          <form
+            class="fixed z-50 w-[90%] max-w-2xl rounded-sm h-[80vh] overflow-auto py-6 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 MatrixBoxEffectGrey bg-[#696969f1] flex flex-col gap-6 p-4 animate__animated animate__faster"
+            action="/exercise/<%= index %>/edit"
+            method="POST"
+            name="editForm"
+            id="editForm"
+          >
+            <h3
+              class="text-2xl md:text-4xl text-center MatrixTextEffectWhiteLow flex flex-col gap-3"
+            >
+              Editing <%= name %>
+            </h3>
+            <input
+              class="editInput text-2xl md:text-3xl pl-4 py-2 bg-transparent w-full MatrixBoxEffectGreyHigh selectionHoverLow transition"
+              placeholder="Exercise name..."
+              name="exerciseName"
+              id="exerciseName"
+              value="<%= name %>"
+              required
+            />
+            <input
+              class="editInput text-2xl md:text-3xl pl-4 py-2 bg-transparent w-full MatrixBoxEffectGreyHigh selectionHoverLow transition"
+              placeholder="Exercise description..."
+              name="exerciseDescription"
+              id="exerciseDescription"
+              value="<%= exercise.description %>"
+              minlength="64"
+              maxlength="250"
+              required
+            />
+            <input
+              class="editInput text-2xl md:text-3xl pl-4 py-2 bg-transparent w-full MatrixBoxEffectGreyHigh selectionHoverLow transition"
+              type="url"
+              pattern="^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$"
+              placeholder="Youtube video url..."
+              oninvalid="this.setCustomValidity('pattern: https://www.youtube.com/watch?v=[videoID]')"
+              oninput="this.setCustomValidity('')"
+              value="<%= embed %>"
+              name="exerciseVideoUrl"
+              id="exerciseVideoUrl"
+              required
+            />
+
+            <div class="CATEGORIES MatrixBoxEffectGreyHigh p-4">
+              <h3 class="text-2xl md:text-3xl mb-3 text-[rgb(155,163,175)]">
+                Select categories (1 required)
+              </h3>
+              <ul class="grid w-full gap-6 md:grid-cols-2">
+                <% allCategories.map((category) =>{ %> <%-
+                include('./components/optionCheckBox.ejs', {option:
+                category.name, value: category.id, filterType: "category",
+                checked: categories.includes(category.name)}) %> <%})%>
+              </ul>
+            </div>
+            <!-- okay, now make the black screen come up on the edit form -->
+            <div class="DIFFICULTY MatrixBoxEffectGreyHigh p-4">
+              <h3 class="text-2xl md:text-3xl mb-3 text-[rgb(155,163,175)]">
+                Select difficulty
+              </h3>
+              <ul class="grid w-full gap-6 md:grid-cols-2">
+                <% allDifficulties.map(_difficulty =>{ %>
+                <%-include('./components/optionRadio.ejs', {option:
+                _difficulty.name, value: _difficulty.id, filterType:
+                "difficulty", checked: _difficulty.name === difficulty}) %>
+                <%})%>
+              </ul>
+            </div>
+            <label
+              class="text-2xl md:text-3xl text-center MatrixTextEffectWhiteLow flex flex-col gap-3"
+            >
+              Enter admin password to edit
+              <input
+                class="text-2xl md:text-3xl pl-4 py-2 bg-[#3737373b] w-full MatrixBoxEffectGreyHigh selectionHoverLow transition"
+                placeholder="Admin password..."
+                name="adminPassword"
+                id="adminPassword"
+                required
+              />
+            </label>
+            <div class="flex gap-2">
+              <button
+                type="button"
+                class="w-full h-9 md:h-12 EditButton relative items-center text-center MatrixTextEffectWhiteLow text-xl md:text-2xl cursor-pointer animate__animated <%= animation%> <%= animationSpeed%>"
+                style="animation-delay: <%= getDelay(animationDelay) %>ms"
+                id="formCancelButton"
+              >
+                Cancel</button
+              ><button
+                type="submit"
+                class="w-full h-9 md:h-12 MatrixBoxEffectWhiteLow relative items-center MediumTag text-center MatrixTextEffectWhiteLow text-xl md:text-2xl cursor-pointer animate__animated <%= animation%> <%= animationSpeed%>"
+                style="animation-delay: <%= getDelay(animationDelay) %>ms"
+              >
+                Edit Exercise
+              </button>
+            </div>
+          </form>
+
+          <%}%>
         </div>
 
         <% if (!!prereqName) { %>
@@ -186,31 +322,113 @@ animationDelaySave; } %>
       const deleteExerciseButton = document.getElementById(
         "deleteExerciseButton"
       );
-      const formCancelButton = document.getElementById("formCancelButton");
-      const deleteScreen = document.getElementById("deleteScreen");
+      const editExerciseButton = document.getElementById("editExerciseButton");
+      const formCancelButtons = document.querySelectorAll("#formCancelButton");
+      const blackScreen = document.getElementById("blackScreen");
       const deleteForm = document.getElementById("deleteForm");
+      const editFormAuth = document.getElementById("editFormAuth");
+      const editForm = document.getElementById("editForm");
 
       deleteExerciseButton.addEventListener("click", (e) => {
-        [deleteScreen, deleteForm].forEach((x) => {
+        [blackScreen, deleteForm].forEach((x) => {
           x.classList.add("animate__fadeIn");
           x.classList.remove("animate__fadeOut", "hidden");
         });
       });
 
-      [formCancelButton, deleteScreen].forEach((y) => {
+      editExerciseButton.addEventListener("click", (e) => {
+        [blackScreen, editFormAuth].forEach((x) => {
+          x.classList.add("animate__fadeIn");
+          x.classList.remove("animate__fadeOut", "hidden");
+        });
+      });
+
+      [Array.from(formCancelButtons), blackScreen].flat().forEach((y) => {
         y.addEventListener("click", (e) => {
-          [deleteScreen, deleteForm].forEach((x) => {
-            x.classList.add("animate__fadeOut");
-            x.classList.remove("animate__fadeIn");
-            x.addEventListener(
-              "animationend",
-              () => {
-                x.classList.add("hidden");
-              },
-              { once: true }
-            );
+          [blackScreen, deleteForm, editFormAuth, editForm].forEach((x) => {
+            if (!x.classList.contains("hidden")) {
+              x.classList.add("animate__fadeOut");
+              x.classList.remove("animate__fadeIn");
+              x.addEventListener(
+                "animationend",
+                () => {
+                  x.classList.add("hidden");
+                },
+                { once: true }
+              );
+            }
           });
         });
+      });
+
+      // newExerciseScript
+      const inputs = document.querySelectorAll(".editInput");
+
+      inputs.forEach((input) => {
+        input.addEventListener("keyup", (e) => {
+          if (e.target.value !== "") {
+            e.target.classList.add("selectionHoverManual");
+          } else {
+            e.target.classList.remove("selectionHoverManual");
+          }
+        });
+      });
+
+      const checkedBoxesLen = document.querySelectorAll(
+        "input[type=checkbox]:checked"
+      ).length;
+      const checkedBoxesLis = document.querySelectorAll(".optionCheckBox");
+      checkedBoxesLis.forEach((li) => {
+        const input = li.querySelector("input");
+        const label = li.querySelector("label");
+        if (input.checked) label.classList.toggle("selectionHoverManual");
+        input.addEventListener("change", (e) => {
+          label.classList.toggle("selectionHoverManual");
+          checkedBoxesLen = document.querySelectorAll(
+            "input[type=checkbox]:checked"
+          ).length;
+        });
+      });
+
+      let radioChecked = true;
+      const radios = document.querySelectorAll(".optionRadio");
+      const resetRadioLabels = () => {
+        const ls = document.querySelectorAll(".optionRadio label");
+        ls.forEach((l) => l.classList.remove("selectionHoverManual"));
+      };
+      radios.forEach((li) => {
+        const input = li.querySelector("input");
+        const label = li.querySelector("label");
+
+        if (input.checked) label.classList.toggle("selectionHoverManual");
+
+        input.addEventListener("change", (e) => {
+          radioChecked = true;
+          input.checked = true;
+          resetRadioLabels();
+          label.classList.toggle("selectionHoverManual");
+        });
+      });
+
+      const descriptionInputLength = document.getElementById(
+        "exerciseDescription"
+      ).value.length;
+
+      const form = document.querySelector("form");
+      form.addEventListener("submit", (e) => {
+        if (!checkedBoxesLen) {
+          e.preventDefault();
+          alert("Select at least one category");
+        } else if (!radioChecked) {
+          e.preventDefault();
+          alert("Select a difficulty");
+        } else if (
+          descriptionInputLength > 63 &&
+          descriptionInputLength < 129
+        ) {
+          e.preventDefault();
+          alert("Description must be between 64 and 128 characters");
+        }
       });
     </script>
   </body>
