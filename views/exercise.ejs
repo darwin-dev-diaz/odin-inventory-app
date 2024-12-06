@@ -159,7 +159,7 @@ animationDelaySave; } %>
           </button>
           <form
             class="hidden fixed z-50 w-[90%] max-w-2xl rounded-sm h-fit py-6 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 MatrixBoxEffectGrey bg-[#696969f1] flex flex-col gap-6 p-4 animate__animated animate__faster"
-            action="/exercise/<%= index %>/edit"
+            action="/exercise/<%= index %>/editAuth"
             method="POST"
             name="editFormAuth"
             id="editFormAuth"
@@ -237,19 +237,17 @@ animationDelaySave; } %>
               id="exerciseVideoUrl"
               required
             />
-
             <div class="CATEGORIES MatrixBoxEffectGreyHigh p-4">
               <h3 class="text-2xl md:text-3xl mb-3 text-[rgb(155,163,175)]">
                 Select categories (1 required)
               </h3>
               <ul class="grid w-full gap-6 md:grid-cols-2">
-                <% allCategories.map((category) =>{ %> <%-
-                include('./components/optionCheckBox.ejs', {option:
+                <% allCategories.map((category) =>{ %>
+                <%-include('./components/optionCheckBox.ejs', {option:
                 category.name, value: category.id, filterType: "category",
                 checked: categories.includes(category.name)}) %> <%})%>
               </ul>
             </div>
-            <!-- okay, now make the black screen come up on the edit form -->
             <div class="DIFFICULTY MatrixBoxEffectGreyHigh p-4">
               <h3 class="text-2xl md:text-3xl mb-3 text-[rgb(155,163,175)]">
                 Select difficulty
@@ -262,6 +260,18 @@ animationDelaySave; } %>
                 <%})%>
               </ul>
             </div>
+            <select
+              class="text-2xl md:text-3xl pl-4 py-2 bg-transparent w-full MatrixBoxEffectGreyHigh selectionHoverLow transition text-[rgb(155,163,175)]"
+              name="prerequisite"
+              id="prerequisite"
+            >
+              <option value="0">-- Select prerequisite --</option>
+              <% allExercises.filter(_exercise => _exercise.id !== index
+              ).forEach(exercise => { %>
+              <option value="<%= exercise.id %>"><%= exercise.name %></option>
+              <% }) %>
+              <option value="0">None</option>
+            </select>
             <label
               class="text-2xl md:text-3xl text-center MatrixTextEffectWhiteLow flex flex-col gap-3"
             >
@@ -374,7 +384,7 @@ animationDelaySave; } %>
         });
       });
 
-      const checkedBoxesLen = document.querySelectorAll(
+      let checkedBoxesLen = document.querySelectorAll(
         "input[type=checkbox]:checked"
       ).length;
       const checkedBoxesLis = document.querySelectorAll(".optionCheckBox");
@@ -410,12 +420,11 @@ animationDelaySave; } %>
         });
       });
 
-      const descriptionInputLength = document.getElementById(
-        "exerciseDescription"
-      ).value.length;
-
-      const form = document.querySelector("form");
+      const form = document.getElementById("editForm");
       form.addEventListener("submit", (e) => {
+        const descriptionInputLength = document.getElementById(
+          "exerciseDescription"
+        ).value.length;
         if (!checkedBoxesLen) {
           e.preventDefault();
           alert("Select at least one category");
@@ -423,8 +432,8 @@ animationDelaySave; } %>
           e.preventDefault();
           alert("Select a difficulty");
         } else if (
-          descriptionInputLength > 63 &&
-          descriptionInputLength < 129
+          descriptionInputLength < 64 &&
+          descriptionInputLength > 250
         ) {
           e.preventDefault();
           alert("Description must be between 64 and 128 characters");

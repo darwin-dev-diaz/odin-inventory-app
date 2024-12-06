@@ -24,7 +24,7 @@ const getNewExercise = asyncHandler(async (req, res) => {
 const postNewExercise = asyncHandler(async (req, res) => {
   if (typeof req.body["categoryFilter[]"] === "string")
     req.body["categoryFilter[]"] = [req.body["categoryFilter[]"]];
-  req.body.exerciseName = capitalize(req.body.exerciseName);
+  req.body.exerciseName = capitalize(req.body.exerciseName.trim());
   if (!Number(req.body.prerequisite)) req.body.prerequisite = null;
 
   await query.createExercise(req.body);

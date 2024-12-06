@@ -6,6 +6,7 @@ const ytToImg = require("../util/ytToImg");
 require("dotenv").config();
 
 const getEditFormData = async () => {
+  const allExercises = await query.getEverySkill();
   const allCategories = (await query.getCategories()).map((c) => ({
     ...c,
     name: capitalize(c.name),
@@ -15,7 +16,7 @@ const getEditFormData = async () => {
     name: capitalize(d.name),
   }));
 
-  return { allCategories, allDifficulties };
+  return { allExercises, allCategories, allDifficulties };
 };
 const getExerciseByID = asyncHandler(async (req, res) => {
   const exercise = await query.getExerciseByID(req.params.exerciseID);
@@ -26,11 +27,13 @@ const getExerciseByID = asyncHandler(async (req, res) => {
   const error = Number(req.query.error) === 1 ? true : false;
   const editAuth = Number(req.query.editAuth) === 1 ? true : false;
 
-  const { allCategories, allDifficulties } = await getEditFormData();
+  const { allExercises, allCategories, allDifficulties } =
+    await getEditFormData();
 
   res.render("exercise", {
     error,
     editAuth,
+    allExercises,
     allCategories,
     allDifficulties,
     index: exercise.id,
@@ -51,8 +54,6 @@ const getExerciseByID = asyncHandler(async (req, res) => {
 });
 
 const postDeleteExercise = asyncHandler(async (req, res) => {
-  console.log(req.body);
-  console.log(req.params);
   if (req.body.adminPassword === process.env.ADMIN_PASSWORD) {
     const row = await query.deleteExerciseByID(req.params.exerciseID);
     res.redirect("/exercises/");
@@ -62,11 +63,25 @@ const postDeleteExercise = asyncHandler(async (req, res) => {
 });
 
 const postEditExerciseAuth = asyncHandler(async (req, res) => {
-  console.log(req.body);
-  console.log(req.params);
   if (req.body.adminPassword === process.env.ADMIN_PASSWORD) {
     res.redirect("./?editAuth=1");
   } else {
+    res.redirect("./?error=1");
+  }
+});
+const postEditExercise = asyncHandler(async (req, res) => {
+  // clean data
+  if (typeof req.body["categoryFilter[]"] === "string")
+    req.body["categoryFilter[]"] = [req.body["categoryFilter[]"]];
+  req.body.exerciseName = capitalize(req.body.exerciseName.trim());
+  if (!Number(req.body.prerequisite)) req.body.prerequisite = null;
+  req.body.id = req.params.exerciseID;
+
+  if (req.body.adminPassword === process.env.ADMIN_PASSWORD) {
+    await query.editExercise(req.body);
+    res.redirect("./");
+  } else {
+    console.log("wrong password");
     res.redirect("./?error=1");
   }
 });
@@ -75,4 +90,5 @@ module.exports = {
   getExerciseByID,
   postDeleteExercise,
   postEditExerciseAuth,
+  postEditExercise,
 };

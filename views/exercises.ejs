@@ -85,7 +85,8 @@ animationDelaySave += delay; return animationDelaySave; } %>
           <ul class="grid w-full gap-6 md:grid-cols-3">
             <% difficulties.map(difficulty => {%> <%-
             include('./components/optionCheckBox.ejs', {option: difficulty.name,
-            value: difficulty.id, filterType: "difficulty"}) %> <%})%>
+            value: difficulty.id, filterType: "difficulty", checked: false}) %>
+            <%})%>
             <button
               type="submit"
               class="col-span-3 MatrixBoxEffectGrey w-full p-3 rounded-sm cursor-pointer selectionHoverLow"
@@ -125,7 +126,8 @@ animationDelaySave += delay; return animationDelaySave; } %>
           <ul class="grid w-full gap-6 md:grid-cols-3">
             <% categories.map(category => {%> <%-
             include('./components/optionCheckBox.ejs', {option: category.name,
-            value: category.id, filterType: "category"}) %> <%})%>
+            value: category.id, filterType: "category", checked: false}) %>
+            <%})%>
             <button
               type="submit"
               class="col-span-3 MatrixBoxEffectGrey w-full p-3 rounded-sm cursor-pointer selectionHoverLow"
@@ -141,8 +143,10 @@ animationDelaySave += delay; return animationDelaySave; } %>
         <h1
           class="text-3xl MatrixTextEffectLow <%= filterSettings ? '' : 'mb-8'%> md:text-4xl"
         >
-        <%= filterPhrase%>
-        <span class="MatrixTextEffectWhiteLow">(<%= exercisesLength%> results)</span>
+          <%= filterPhrase%>
+          <span class="MatrixTextEffectWhiteLow"
+            >(<%= exercisesLength%> results)</span
+          >
         </h1>
         <%if (filterSettings){%>
         <h1 class="text-2xl MatrixTextEffectWhiteLow mb-8 md:text-3xl">

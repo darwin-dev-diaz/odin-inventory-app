@@ -165,6 +165,54 @@ async function deleteExerciseByID(exerciseID) {
   ]);
   return rows;
 }
+
+async function editExercise(params) {
+  // check user input one more time
+  const checks = () => {
+    return (
+      typeof params.exerciseName === "string" &&
+      typeof params.exerciseDescription === "string" &&
+      typeof params.exerciseVideoUrl === "string" &&
+      typeof Number(params.difficultyFilter) === "number" &&
+      Number(params.difficultyFilter) > 0 &&
+      typeof Number(params.prerequisite) === "number" &&
+      Number(params.prerequisite) > -1 &&
+      typeof params["categoryFilter[]"] === "object" &&
+      !!params["categoryFilter[]"].length &&
+      Number(params.prerequisite) !== Number(params.id)
+    );
+  };
+
+  // skills entry
+  const str1 =
+    "UPDATE skills SET name = $1, description = $2, difficulty = $3, prerequisite = $4, video_url = $5 WHERE id = $6";
+  const arr1 = [
+    params.exerciseName,
+    params.exerciseDescription,
+    params.difficultyFilter,
+    params.prerequisite,
+    params.exerciseVideoUrl,
+    params.id,
+  ];
+  const res1 = checks() ? await pool.query(str1, arr1) : false;
+
+  // category skills wipe
+  const str2 = "DELETE FROM skills_category WHERE skill_id = $1";
+  const arr2 = [params.id];
+  const res2 = checks() ? await pool.query(str2, arr2) : false;
+
+  // insert int
+  const str3 =
+    "INSERT INTO skills_category (skill_id, category_id) VALUES " +
+    params["categoryFilter[]"]
+      .map((_, i) => `($${i * 2 + 1}, $${i * 2 + 2})`)
+      .join(", ") +
+    " RETURNING *";
+  const arr3 = params["categoryFilter[]"].flatMap((c) => [params.id, c]);
+  const res3 = checks() ? await pool.query(str3, arr3) : false;
+
+  console.log({ str1, arr1, str2, arr2, str3, arr3 });
+}
 module.exports = {
   getEverySkill,
   getExerciseByID,
@@ -179,4 +227,5 @@ module.exports = {
   searchSkills,
   createExercise,
   deleteExerciseByID,
+  editExercise,
 };
