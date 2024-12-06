@@ -88,12 +88,13 @@ TODO:
 [x] - remove default input highlight
 [x] - createExpert tag
 [x] - fix expert tag
-[ ] - make admin controlls work
+[x] - make admin controlls work
 [x] - make delete work
-[] - edit
-[] - edit view (copy as much as possible from what you have )
-[] - connect edit to db
+[x] - edit
+[x] - edit view (copy as much as possible from what you have )
+[x] - connect edit to db
+great job so far
 
-[] - start using the railway database
 [] - create about page
+[] - start using the railway database
 [] - polish

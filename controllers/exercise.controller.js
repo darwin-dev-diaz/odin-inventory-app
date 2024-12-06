@@ -41,6 +41,7 @@ const getExerciseByID = asyncHandler(async (req, res) => {
     categories,
     difficulty,
     prereqID: prerequisteExercise ? prerequisteExercise.id : null,
+    videoUrl: exercise.video_url,
     name: capitalize(exercise.name),
     embed: ytToEmbed(exercise.video_url),
     imgUrl: ytToImg(exercise.video_url),
