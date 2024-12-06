@@ -27,6 +27,11 @@ app.use("/progression", progressionRoute);
 app.use("/newExercise", newExerciseRoute);
 app.use("/about", aboutRoute);
 
+// 404
+app.get("*", (req, res) => {
+  res.render("404");
+});
+
 app.listen(process.env.PORT, () => {
   console.log("Listening on port " + process.env.PORT);
 });
