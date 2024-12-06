@@ -3,19 +3,15 @@ const capitalize = require("../util/capitalize");
 const ytToImg = require("../util/ytToImg");
 
 async function getEveryExercise() {
-  const { rows } = await pool.query("SELECT * FROM skills ORDER BY id DESC");
+  let { rows } = await pool.query("SELECT * FROM skills ORDER BY id DESC");
+  rows = rows.map((row) => ({ ...row, image_url: ytToImg(row.video_url) }));
   return rows;
-}
-async function getExerciseByID(exerciseID) {
-  const { rows } = await pool.query("SELECT * FROM skills WHERE id = $1", [
-    exerciseID,
-  ]);
-  return rows[0];
 }
 async function searchExercisesByName(str) {
   const query = "SELECT * FROM skills WHERE lower(name) LIKE $1";
   const arr = ["%" + str.toLowerCase() + "%"];
-  const { rows } = await pool.query(query, arr);
+  let { rows } = await pool.query(query, arr);
+  rows = rows.map((row) => ({ ...row, image_url: ytToImg(row.video_url) }));
   return rows;
 }
 async function filterExercisesByDifficulty(arr) {
@@ -23,7 +19,8 @@ async function filterExercisesByDifficulty(arr) {
     "SELECT * FROM skills WHERE difficulty IN (" +
     arr.map((_, i) => `$${i + 1}`).join(", ") +
     ")";
-  const { rows } = await pool.query(query, arr);
+  let { rows } = await pool.query(query, arr);
+  rows = rows.map((row) => ({ ...row, image_url: ytToImg(row.video_url) }));
   return rows;
 }
 async function filterExercisesByCategory(arr) {
@@ -31,8 +28,15 @@ async function filterExercisesByCategory(arr) {
     "SELECT DISTINCT s.* FROM skills AS s INNER JOIN skills_category AS sc ON s.id = sc.skill_id WHERE sc.category_id IN (" +
     arr.map((_, i) => `$${i + 1}`).join(", ") +
     ")";
-  const { rows } = await pool.query(query, arr);
+  let { rows } = await pool.query(query, arr);
+  rows = rows.map((row) => ({ ...row, image_url: ytToImg(row.video_url) }));
   return rows;
+}
+async function getExerciseByID(exerciseID) {
+  const { rows } = await pool.query("SELECT * FROM skills WHERE id = $1", [
+    exerciseID,
+  ]);
+  return rows[0];
 }
 async function getDifficulties(arr) {
   const { rows } = arr

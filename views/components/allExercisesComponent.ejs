@@ -1,8 +1,3 @@
-<% const url = ytToImg(link) %>
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-/>
 <a href="/exercise/<%= index %>">
   <div
     class="relative div-3 EXERCISE-BOX bg-darkSurface-a30 hover:bg-[#7070702b] bg-opacity-30 rounded-sm w-full h-52 justify-self-center flex flex-col MatrixBoxEffectGrey md:h-64 animate__animated animate__fadeIn animate__faster"
@@ -12,7 +7,7 @@
     <div
       class="bg-black w-full max-h-[80%] h-full bg-cover bg-center"
       style="
-        background-image: url('<%= url %>');
+        background-image: url('<%= image_url %>');
         filter: grayscale(1) brightness(0.5) blur(0.65px);
       "
     ></div>

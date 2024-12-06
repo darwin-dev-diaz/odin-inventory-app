@@ -1,22 +1,5 @@
-<% const animation = "animate__fadeIn" %> <% const animationSpeed =
-"animate__faster" %>
-
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-/>
-
-<style>
-  @media (min-width: 768px) {
-    .dynamic-grid {
-      grid-template-rows: repeat(1, minmax(0, 1fr)) !important;
-    }
-    .dynamic-item {
-      grid-row: span 1 / span 1 !important;
-      grid-column: span 1 / span 1 !important;
-    }
-  }
-</style>
+<% const animation = "animate__fadeIn" %> 
+<% const animationSpeed = "animate__faster" %>
 
 <a
   class="EXERCISE-BOX bg-darkSurface-a30 bg-opacity-30 rounded-sm w-full aspect-square justify-self-center flex flex-col MatrixBoxEffectGrey md:h-64 cursor-pointer md:max-w-xl animate__animated <%= animation%> <%= animationSpeed%> div-3 relative"
@@ -34,51 +17,50 @@
       grid-template-rows: repeat(<%= progressionArr.length %>, minmax(0, 1fr));
     "
   >
-    <%progressionArr.map((progression, i)=>{%> <% if(i===0){%>
-
-    <div
-      class="relative bg-green-700 md:row-span-1 md:col-span-1 w-full h-full dynamic-item bg-auto bg-center"
-      style="
-        grid-row: span <%= progressionArr.length - 1 %> / span <%=
-          progressionArr.length - 1 %>;
-        grid-column: span <%= progressionArr.length - 1 %> / span <%=
-          progressionArr.length - 1 %>;
-        background-image: url('<%= progression.image_url %>');
-        filter: brightness(0.65);
-      "
-    >
-      <div
-        class="w-full h-full"
-        style="
-          background-color: rgba(22, 163, 74, 0.5);
-          backdrop-filter: grayscale(1) blur(0.5px);
-        "
-      ></div>
-    </div>
-
-    <%} else {%>
-    <div
-      class="relative w-full h-full bg-green bg-auto bg-center"
-      style="
-        background-image: url('<%= progression.image_url %>');
-        filter: brightness(0.65);
-      "
-    >
-      <div
-        class="w-full h-full"
-        style="
-          backdrop-filter: grayscale(1) blur(0.5px);
-          background-color: rgba(
-            <%= 22 + (35 * i) %>,
-            163,
-            <%= 74 + (10 * i) %>,
-            0.5
-          );
-        "
-      ></div>
-    </div>
-
-    <%}%> <%})%>
+    <%progressionArr.map((progression, i)=>{%> 
+      <% if(i===0){%>
+        <div
+          class="relative bg-green-700 md:row-span-1 md:col-span-1 w-full h-full dynamic-item bg-auto bg-center"
+          style="
+            grid-row: span <%= progressionArr.length - 1 %> / span <%=
+              progressionArr.length - 1 %>;
+            grid-column: span <%= progressionArr.length - 1 %> / span <%=
+              progressionArr.length - 1 %>;
+            background-image: url('<%= progression.image_url %>');
+            filter: brightness(0.65);
+          "
+        >
+          <div
+            class="w-full h-full"
+            style="
+              background-color: rgba(22, 163, 74, 0.5);
+              backdrop-filter: grayscale(1) blur(0.5px);
+            "
+          ></div>
+        </div>
+      <%} else {%>
+        <div
+          class="relative w-full h-full bg-green bg-auto bg-center"
+          style="
+            background-image: url('<%= progression.image_url %>');
+            filter: brightness(0.65);
+          "
+        >
+          <div
+            class="w-full h-full"
+            style="
+              backdrop-filter: grayscale(1) blur(0.5px);
+              background-color: rgba(
+                <%= 22 + (35 * i) %>,
+                163,
+                <%= 74 + (10 * i) %>,
+                0.5
+              );
+            "
+          ></div>
+        </div>
+      <%}%> 
+    <%})%>
     <div class="w-full h-full col-span-full flex justify-center items-center">
       <p
         class="text-center text-3xl md:text-4xl tracking-wider MatrixTextEffectWhiteLow"

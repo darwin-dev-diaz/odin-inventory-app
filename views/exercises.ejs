@@ -1,7 +1,6 @@
-<% const animationDelay = 30 %>
-<!-- Increase to 250ms -->
-<% let animationDelaySave = 0 %> <% const getDelay = (delay) => {
-animationDelaySave += delay; return animationDelaySave; } %>
+<% const animationDelay = 30 %> <% let animationDelaySave = 0 %> <% const
+getDelay = (delay) => { animationDelaySave += delay; return animationDelaySave;
+} %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -159,7 +158,7 @@ animationDelaySave += delay; return animationDelaySave; } %>
           <% exercises.map((exercise, i) => { %> <%-
           include('./components/allExercisesComponent.ejs', {index: exercise.id,
           delay: getDelay(animationDelay), link: exercise.video_url, name:
-          exercise.name, ytToImg: ytToImg}) %> <%})%>
+          exercise.name, image_url: exercise.image_url}) %> <%})%>
         </div>
       </div>
     </div>

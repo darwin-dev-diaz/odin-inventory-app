@@ -817,3 +817,13 @@ button:focus {
     transform: translate(0);
   }
 }
+
+@media (min-width: 768px) {
+  .dynamic-grid {
+    grid-template-rows: repeat(1, minmax(0, 1fr)) !important;
+  }
+  .dynamic-item {
+    grid-row: span 1 / span 1 !important;
+    grid-column: span 1 / span 1 !important;
+  }
+}
