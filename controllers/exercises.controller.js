@@ -14,7 +14,7 @@ const getExercises = asyncHandler(async (req, res) => {
   // if not, set the default values for exercise and filterPhrase
   const filterMap = {
     difficultyFilter: async () => {
-      exercises = await query.filterSkillsByDifficulty(
+      exercises = await query.filterExercisesByDifficulty(
         req.query.difficultyFilter
       );
       filterPhrase = "Filtering by difficulties";
@@ -23,14 +23,16 @@ const getExercises = asyncHandler(async (req, res) => {
         .join(", ");
     },
     categoryFilter: async () => {
-      exercises = await query.filterSkillsByCategory(req.query.categoryFilter);
+      exercises = await query.filterExercisesByCategory(
+        req.query.categoryFilter
+      );
       filterPhrase = "Filtering by categories";
       filterSettings = (await query.getCategories(req.query.categoryFilter))
         .map((x) => capitalize(x.name))
         .join(", ");
     },
     searchQuery: async () => {
-      exercises = await query.searchSkills(req.query.searchQuery);
+      exercises = await query.searchExercisesByName(req.query.searchQuery);
       filterPhrase = "Showing search results for";
       filterSettings = `"${req.query.searchQuery}"`;
     },

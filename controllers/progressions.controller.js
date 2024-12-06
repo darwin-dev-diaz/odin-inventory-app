@@ -5,8 +5,8 @@ const getProgressions = asyncHandler(async (req, res) => {
   const [progressionsArrs, namesArr] = await query.getAllProgressions();
 
   res.render("progressions", {
-    progressionsArrs: progressionsArrs,
-    namesArr: namesArr,
+    progressionsArrs,
+    namesArr,
   });
 });
 

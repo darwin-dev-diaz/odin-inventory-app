@@ -6,10 +6,41 @@ async function getEveryExercise() {
   const { rows } = await pool.query("SELECT * FROM skills ORDER BY id DESC");
   return rows;
 }
+async function getExerciseByID(exerciseID) {
+  const { rows } = await pool.query("SELECT * FROM skills WHERE id = $1", [
+    exerciseID,
+  ]);
+  return rows[0];
+}
+async function searchExercisesByName(str) {
+  const query = "SELECT * FROM skills WHERE lower(name) LIKE $1";
+  const arr = ["%" + str.toLowerCase() + "%"];
+  const { rows } = await pool.query(query, arr);
+  return rows;
+}
+async function filterExercisesByDifficulty(arr) {
+  const query =
+    "SELECT * FROM skills WHERE difficulty IN (" +
+    arr.map((_, i) => `$${i + 1}`).join(", ") +
+    ")";
+  const { rows } = await pool.query(query, arr);
+  return rows;
+}
+async function filterExercisesByCategory(arr) {
+  const query =
+    "SELECT DISTINCT s.* FROM skills AS s INNER JOIN skills_category AS sc ON s.id = sc.skill_id WHERE sc.category_id IN (" +
+    arr.map((_, i) => `$${i + 1}`).join(", ") +
+    ")";
+  const { rows } = await pool.query(query, arr);
+  return rows;
+}
 async function getDifficulties(arr) {
   const { rows } = arr
     ? await pool.query(
-        "SELECT name FROM difficulty WHERE id IN (" + arr.join(", ") + ")"
+        "SELECT name FROM difficulty WHERE id IN (" +
+          arr.map((_, i) => `$${i + 1}`).join(", ") +
+          ")",
+        arr
       )
     : await pool.query("SELECT * FROM difficulty");
   return rows;
@@ -17,40 +48,14 @@ async function getDifficulties(arr) {
 async function getCategories(arr) {
   const { rows } = arr
     ? await pool.query(
-        "SELECT * FROM category WHERE id IN (" + arr.join(", ") + ")"
+        "SELECT * FROM category WHERE id IN (" +
+          arr.map((_, i) => `$${i + 1}`).join(", ") +
+          ")",
+        arr
       )
     : await pool.query("SELECT * FROM category");
   return rows;
 }
-
-async function searchSkills(str) {
-  const query = `SELECT * FROM skills WHERE lower(name) LIKE '%${str.toLowerCase()}%'`;
-  const { rows } = await pool.query(query);
-  return rows;
-}
-async function filterSkillsByDifficulty(arr) {
-  const query =
-    "SELECT * FROM skills WHERE difficulty IN (" + arr.join(", ") + ")";
-  const { rows } = await pool.query(query);
-  return rows;
-}
-async function filterSkillsByCategory(arr) {
-  const query =
-    "SELECT DISTINCT s.* FROM skills AS s INNER JOIN skills_category AS sc ON s.id = sc.skill_id WHERE sc.category_id IN (" +
-    arr.join(", ") +
-    ")";
-
-  const { rows } = await pool.query(query);
-  return rows;
-}
-
-async function getExerciseByID(exerciseID) {
-  const { rows } = await pool.query("SELECT * FROM skills WHERE id = $1", [
-    exerciseID,
-  ]);
-  return rows[0];
-}
-
 async function getExerciseCategories(exerciseID) {
   let rows = (
     await pool.query(
@@ -59,27 +64,25 @@ async function getExerciseCategories(exerciseID) {
     )
   ).rows.map((catObj) => catObj.category_id);
 
-  const placeholders = rows
-    .map((_, index) => `$${index + 1}`)
-    .join(" OR id = ");
-  const query = "SELECT name FROM category WHERE id = " + placeholders;
-  const output = (await pool.query(query, rows)).rows.map((catObj) =>
+  const query =
+    "SELECT name FROM category WHERE id = " +
+    rows.map((_, index) => `$${index + 1}`).join(" OR id = ");
+
+  const categories = (await pool.query(query, rows)).rows.map((catObj) =>
     capitalize(catObj.name)
   );
 
-  return output;
+  return categories;
 }
-
 async function getExerciseDifficulty(difficulty_id) {
-  const output = (
+  const difficulty = (
     await pool.query("SELECT name FROM difficulty WHERE id = $1", [
       difficulty_id,
     ])
   ).rows[0].name;
 
-  return capitalize(output);
+  return capitalize(difficulty);
 }
-
 async function getAllProgressions() {
   let { rows } = await pool.query(
     "SELECT array_agg(json_build_object('name', skills.name, 'end_skill_id', progression.end_skill_id, 'video_url', skills.video_url)) AS progression_details FROM progression INNER JOIN skills ON progression.skill_id = skills.id  GROUP BY progression.end_skill_id ORDER BY end_skill_id ASC"
@@ -89,7 +92,7 @@ async function getAllProgressions() {
     .map((row) =>
       row.map((exercise) => ({
         ...exercise,
-        video_url: ytToImg(exercise.video_url),
+        image_url: ytToImg(exercise.video_url),
       }))
     );
 
@@ -101,7 +104,6 @@ async function getAllProgressions() {
 
   return [rows, names];
 }
-
 async function getProgressionByID(end_skill_id) {
   let { rows } = await pool.query(
     "SELECT * FROM progression LEFT JOIN skills ON progression.skill_id = skills.id WHERE end_skill_id = $1 ORDER BY progression_order DESC",
@@ -109,13 +111,12 @@ async function getProgressionByID(end_skill_id) {
   );
   rows = rows.map((exercise) => ({
     ...exercise,
-    imgUrl: ytToImg(exercise.video_url),
+    image_url: ytToImg(exercise.video_url),
   }));
   return rows;
 }
-
 async function createExercise(params) {
-  // check user input one more time
+  // check user input one more time before accessing db
   const checks = () => {
     return (
       typeof params.exerciseName === "string" &&
@@ -130,8 +131,8 @@ async function createExercise(params) {
     );
   };
 
-  // skills entry
-  const str1 =
+  // enter data into skills table
+  const query1 =
     "INSERT INTO skills(name, description, difficulty, prerequisite, video_url) VALUES ($1, $2, $3, $4, $5) RETURNING *";
   const arr1 = [
     params.exerciseName,
@@ -140,7 +141,7 @@ async function createExercise(params) {
     params.prerequisite,
     params.exerciseVideoUrl,
   ];
-  const res1 = checks() ? await pool.query(str1, arr1) : false;
+  const res1 = checks() ? await pool.query(query1, arr1) : false;
 
   // get next row entry
   const exerciseID = Number(
@@ -148,26 +149,24 @@ async function createExercise(params) {
       .rows[0].exact_count
   );
 
-  // category skills entry
-  const str2 =
+  // enter data into skills_category table
+  const query2 =
     "INSERT INTO skills_category (skill_id, category_id) VALUES " +
     params["categoryFilter[]"]
       .map((_, i) => `($${i * 2 + 1}, $${i * 2 + 2})`)
       .join(", ") +
     " RETURNING *";
   const arr2 = params["categoryFilter[]"].flatMap((c) => [exerciseID, c]);
-  const res2 = checks() ? await pool.query(str2, arr2) : false;
+  const res2 = checks() ? await pool.query(query2, arr2) : false;
 }
-
 async function deleteExerciseByID(exerciseID) {
   const { rows } = pool.query("DELETE FROM skills WHERE id = $1 RETURNING *", [
     exerciseID,
   ]);
   return rows;
 }
-
 async function editExercise(params) {
-  // check user input one more time
+  // check user input one more time before accessing db
   const checks = () => {
     return (
       typeof params.exerciseName === "string" &&
@@ -183,8 +182,8 @@ async function editExercise(params) {
     );
   };
 
-  // skills entry
-  const str1 =
+  // update data on the skills table by the exercise id
+  const query1 =
     "UPDATE skills SET name = $1, description = $2, difficulty = $3, prerequisite = $4, video_url = $5 WHERE id = $6";
   const arr1 = [
     params.exerciseName,
@@ -194,27 +193,27 @@ async function editExercise(params) {
     params.exerciseVideoUrl,
     params.id,
   ];
-  const res1 = checks() ? await pool.query(str1, arr1) : false;
+  const res1 = checks() ? await pool.query(query1, arr1) : false;
 
   // category skills wipe
-  const str2 = "DELETE FROM skills_category WHERE skill_id = $1";
+  const query2 = "DELETE FROM skills_category WHERE skill_id = $1";
   const arr2 = [params.id];
-  const res2 = checks() ? await pool.query(str2, arr2) : false;
+  const res2 = checks() ? await pool.query(query2, arr2) : false;
 
   // insert int
-  const str3 =
+  const query3 =
     "INSERT INTO skills_category (skill_id, category_id) VALUES " +
     params["categoryFilter[]"]
       .map((_, i) => `($${i * 2 + 1}, $${i * 2 + 2})`)
       .join(", ") +
     " RETURNING *";
   const arr3 = params["categoryFilter[]"].flatMap((c) => [params.id, c]);
-  const res3 = checks() ? await pool.query(str3, arr3) : false;
+  const res3 = checks() ? await pool.query(query3, arr3) : false;
 
-  console.log({ str1, arr1, str2, arr2, str3, arr3 });
+  return { res1, res2, res3 };
 }
 module.exports = {
-  getEveryExercise: getEveryExercise,
+  getEveryExercise,
   getExerciseByID,
   getExerciseCategories,
   getExerciseDifficulty,
@@ -222,9 +221,9 @@ module.exports = {
   getProgressionByID,
   getDifficulties,
   getCategories,
-  filterSkillsByDifficulty,
-  filterSkillsByCategory,
-  searchSkills,
+  filterExercisesByDifficulty,
+  filterExercisesByCategory,
+  searchExercisesByName,
   createExercise,
   deleteExerciseByID,
   editExercise,
