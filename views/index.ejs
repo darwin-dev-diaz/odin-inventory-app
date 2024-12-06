@@ -1,8 +1,6 @@
-<% const animation = "animate__fadeIn" %> <% const animationSpeed =
-"animate__faster" %> <% const animationDelay = 50 %>
-<!-- Increase to 250ms -->
-<% let animationDelaySave = 0 %> <% const getDelay = (delay) => {
-animationDelaySave += delay; return animationDelaySave; } %>
+<% const animationDelay = 50 %> 
+<% let animationDelaySave = 0 %> 
+<% const getDelay = (delay) => { animationDelaySave += delay; return animationDelaySave; } %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,13 +8,11 @@ animationDelaySave += delay; return animationDelaySave; } %>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/output.css" />
-    <link rel="stylesheet" href="/css/index.css" />
     <title>Calisthenics Matrix</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
       body {
         background-color: #0f140f;
-        /* opacity: 0.25; */
         background-image: radial-gradient(#007a021a 1px, transparent 1px),
           radial-gradient(#007a021a 1px, #0f140f 1px);
         background-size: 10px 10px;
@@ -45,7 +41,7 @@ animationDelaySave += delay; return animationDelaySave; } %>
           class="relative LINKS flex flex-col text-4xl md:text-5xl justify-center items-start gap-5"
         >
           <button
-            class="relative custom-btn btn-3 animate__animated <%= animation%> <%= animationSpeed%>"
+            class="relative custom-btn btn-3 animate__animated animate__fadeIn animate__faster"
             style="animation-delay: <%= getDelay(animationDelay) %>ms"
           >
             <span class="MatrixTextEffectWhite px-2">
@@ -54,7 +50,7 @@ animationDelaySave += delay; return animationDelaySave; } %>
             </span>
           </button>
           <button
-            class="relative custom-btn btn-3 animate__animated <%= animation%> <%= animationSpeed%>"
+            class="relative custom-btn btn-3 animate__animated animate__fadeIn animate__faster"
             style="animation-delay: <%= getDelay(animationDelay) %>ms"
           >
             <span class="MatrixTextEffectWhite px-2">
@@ -64,7 +60,7 @@ animationDelaySave += delay; return animationDelaySave; } %>
           </button>
 
           <button
-            class="relative custom-btn btn-3 animate__animated <%= animation%> <%= animationSpeed%>"
+            class="relative custom-btn btn-3 animate__animated animate__fadeIn animate__faster"
             style="animation-delay: <%= getDelay(animationDelay) %>ms"
           >
             <span class="MatrixTextEffectWhite px-2">
@@ -73,7 +69,7 @@ animationDelaySave += delay; return animationDelaySave; } %>
             </span>
           </button>
           <button
-            class="relative custom-btn btn-3 animate__animated <%= animation%> <%= animationSpeed%>"
+            class="relative custom-btn btn-3 animate__animated animate__fadeIn animate__faster"
             style="animation-delay: <%= getDelay(animationDelay) %>ms"
           >
             <span class="MatrixTextEffectWhite px-2">
@@ -82,7 +78,7 @@ animationDelaySave += delay; return animationDelaySave; } %>
             </span>
           </button>
           <button
-            class="relative custom-btn btn-3 animate__animated <%= animation%> <%= animationSpeed%>"
+            class="relative custom-btn btn-3 animate__animated animate__fadeIn animate__faster"
             style="animation-delay: <%= getDelay(animationDelay) %>ms"
           >
             <span class="MatrixTextEffectWhite px-2">
@@ -93,7 +89,7 @@ animationDelaySave += delay; return animationDelaySave; } %>
             </span>
           </button>
           <button
-            class="relative custom-btn btn-3 animate__animated <%= animation%> <%= animationSpeed%>"
+            class="relative custom-btn btn-3 animate__animated animate__fadeIn animate__faster"
             style="animation-delay: <%= getDelay(animationDelay) %>ms"
           >
             <span class="MatrixTextEffectWhite px-2">

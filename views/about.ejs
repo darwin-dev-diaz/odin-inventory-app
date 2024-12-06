@@ -1,9 +1,4 @@
-<% const animationDelay = 50; %> 
-<% let animationDelaySave = 0; %> 
-<% const getDelay = (delay) => { 
-     animationDelaySave += delay; 
-     return animationDelaySave; 
-}; %> 
+<% const animationDelay = 50; %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,13 +6,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/output.css" />
-    <link rel="stylesheet" href="/css/index.css" />
+
     <title>About | Calisthenics Matrix</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
       body {
         background-color: #0f140f;
-        /* opacity: 0.25; */
         background-image: radial-gradient(#007a021a 1px, transparent 1px),
           radial-gradient(#007a021a 1px, #0f140f 1px);
         background-size: 10px 10px;
@@ -26,10 +20,6 @@
         color: white;
       }
     </style>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
   </head>
   <body class="">
     <%- include('./components/header.ejs') %>
@@ -44,9 +34,11 @@
       <div
         class="grid grid-cols-1 w-full gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 animate"
       >
-        <%tools.map(tool=>{%> <%-include('./components/aboutPageComponent.ejs',
-        {imageUrl: tool.icon, name: tool.name, description: tool.description,
-        link: tool.link, delay: getDelay(animationDelay)}) %> <%})%>
+        <%tools.map((tool, index)=>{%> 
+          <%-include('./components/aboutPageComponent.ejs',
+          {imageUrl: tool.icon, name: tool.name, description: tool.description,
+          link: tool.link, delay: animationDelay, index}) %> 
+        <%})%>
       </div>
     </div>
   </body>

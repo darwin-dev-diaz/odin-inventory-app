@@ -1,7 +1,9 @@
-<% const animation = "animate__fadeIn" %> <% const animationSpeed =
-"animate__faster" %> <% const animationDelay = 75 %> <% let animationDelaySave =
-0 %> <% const getDelay = (delay) => { animationDelaySave += delay; return
-animationDelaySave; } %>
+<% const animationDelay = 50 %> 
+<% let animationDelaySave = 0 %> 
+<% const getDelay = (delay) => { %>
+  <% animationDelaySave += delay; %> 
+  <% return animationDelaySave; %>
+<% } %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +11,7 @@ animationDelaySave; } %>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/output.css" />
-    <link rel="stylesheet" href="/css/index.css" />
+
     <title><%= name %> | Calisthenics Matrix</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
@@ -24,30 +26,31 @@ animationDelaySave; } %>
         color: white;
       }
     </style>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
   </head>
   <body class="">
     <%- include('./components/header.ejs') %>
+
     <div
       class="CONTENT z-40 p-[1.75rem] flex flex-col justify-center items-center mx-auto px-5 max-w-xl md:max-w-4xl lg:max-w-5xl md: gap-8 md:items-start md:grid md:grid-cols-2"
     >
-      <% if (error) {%>
 
-      <p
-        class="w-full h-fit MatrixBoxEffectGrey ErrorTag bg-darkSurface-a30 bg-opacity-30 text-2xl md:text-3xl p-3 MatrixTextEffectWhiteLow mb-3 col-span-2"
-      >
+      <% if (error) {%>
+        <p
+          class="w-full h-fit MatrixBoxEffectGrey ErrorTag bg-darkSurface-a30 bg-opacity-30 text-2xl md:text-3xl p-3 MatrixTextEffectWhiteLow mb-3 col-span-2"
+        >
         Wrong Password. Admin controls require the correct admin password.
-      </p>
+        </p>
       <%}%>
-      <div class="max-w-md justify-self-stretch w-full">
+
+      <div class="LEFTSIDE max-w-md justify-self-stretch w-full">
+        <!-- categories -->
         <div class="flex w-full gap-1 mb-2">
-          <% categories.map(category => { %> <%-
-          include('./components/categoryTag.ejs', {category: category}) %> <%
-          })%>
+          <% categories.map(category => { %> 
+            <%- include('./components/categoryTag.ejs', {category: category}) %> 
+          <%})%>
         </div>
+
+        <!-- grey image -->
         <div
           class="w-full aspect-square MatrixBoxEffectGrey bg-darkSurface-a30 bg-opacity-30 mb-3 justify-self-center md:max-w-md bg-cover bg-center"
           style="
@@ -55,43 +58,47 @@ animationDelaySave; } %>
             filter: grayscale(1) brightness(0.75);
           "
         ></div>
+
+        <!-- exercise name -->
         <p
           class="max-w-xl w-full h-fit MatrixBoxEffectGrey bg-darkSurface-a30 bg-opacity-30 text-3xl p-3 MatrixTextEffectWhiteLow mb-3"
         >
           <%= name %>
         </p>
+
+        <!-- difficulty name -->
         <div
           class="max-w-xl w-full h-fit bg-opacity-30 text-3xl p-3 MatrixTextEffectWhiteLow <%= difficulty %>Tag"
         >
           Difficulty: <% if (difficulty === "Advanced") { %>
-
-          <span class="glitch tracking-widest" data-glitch="<%= difficulty %>">
-            <%= difficulty %>
-          </span>
+            <span class="glitch tracking-widest" data-glitch="<%= difficulty %>">
+              <%= difficulty %>
+            </span>
 
           <% } else if (difficulty === "Expert"){ %>
+            <span
+              class="glitch-expert tracking-widest uppercase"
+              data-glitch-expert="<%= difficulty %>"
+            >
+              <%= difficulty %>
+            </span>
 
-          <span
-            class="glitch-expert tracking-widest uppercase"
-            data-glitch-expert="<%= difficulty %>"
-          >
-            <%= difficulty %>
-          </span>
-
-          <% } else { %> <%= difficulty %> <% } %>
+          <% } else { %> 
+            <%= difficulty %> 
+          <% } %>
         </div>
       </div>
 
-      <div class="md:mt-11">
+      <div class="RIGHTSIDE md:mt-11">
         <p
-          class="max-w-xl w-full h-fit MatrixBoxEffectGrey bg-darkSurface-a30 bg-opacity-30 text-lg p-3 MatrixTextEffectWhiteLow tracking-wider mb-11 lg:text-xl animate__animated <%= animation%> <%= animationSpeed%>"
+          class="max-w-xl w-full h-fit MatrixBoxEffectGrey bg-darkSurface-a30 bg-opacity-30 text-lg p-3 MatrixTextEffectWhiteLow tracking-wider mb-11 lg:text-xl animate__animated animate__fadeIn animate__faster"
           style="animation-delay: <%= getDelay(animationDelay) %>ms"
         >
           <%= exercise.description %>
         </p>
 
         <iframe
-          class="w-full aspect-video mb-7 animate__animated <%= animation%> <%= animationSpeed%>"
+          class="w-full aspect-video mb-7 animate__animated animate__fadeIn animate__faster"
           style="animation-delay: <%= getDelay(animationDelay) %>ms"
           src="<%= embed %>"
           title="YouTube video player"
@@ -103,7 +110,7 @@ animationDelaySave; } %>
 
         <div class="w-full flex flex-col gap-3 mb-11">
           <button
-            class="w-full h-9 md:h-12 MatrixBoxEffectWhiteLow relative items-center DeleteButton text-center MatrixTextEffectWhiteLow text-2xl cursor-pointer animate__animated <%= animation%> <%= animationSpeed%>"
+            class="w-full h-9 md:h-12 MatrixBoxEffectWhiteLow relative items-center DeleteButton text-center MatrixTextEffectWhiteLow text-2xl cursor-pointer animate__animated animate__fadeIn animate__faster"
             style="animation-delay: <%= getDelay(animationDelay) %>ms"
             id="deleteExerciseButton"
           >
@@ -135,15 +142,13 @@ animationDelaySave; } %>
             <div class="flex gap-2">
               <button
                 type="button"
-                class="w-full h-9 md:h-12 EditButton relative items-center text-center MatrixTextEffectWhiteLow text-xl md:text-2xl cursor-pointer animate__animated <%= animation%> <%= animationSpeed%>"
-                style="animation-delay: <%= getDelay(animationDelay) %>ms"
+                class="w-full h-9 md:h-12 EditButton relative items-center text-center MatrixTextEffectWhiteLow text-xl md:text-2xl cursor-pointer animate__animated animate__fadeIn animate__faster"
                 id="formCancelButton"
               >
                 Cancel</button
               ><button
                 type="submit"
-                class="w-full h-9 md:h-12 MatrixBoxEffectWhiteLow relative items-center DeleteButton text-center MatrixTextEffectWhiteLow text-xl md:text-2xl cursor-pointer animate__animated <%= animation%> <%= animationSpeed%>"
-                style="animation-delay: <%= getDelay(animationDelay) %>ms"
+                class="w-full h-9 md:h-12 MatrixBoxEffectWhiteLow relative items-center DeleteButton text-center MatrixTextEffectWhiteLow text-xl md:text-2xl cursor-pointer animate__animated animate__fadeIn animate__faster"
               >
                 Delete Exercise
               </button>
@@ -151,7 +156,7 @@ animationDelaySave; } %>
           </form>
 
           <button
-            class="w-full h-9 md:h-12 EditButton relative items-center text-center MatrixTextEffectWhiteLow text-2xl cursor-pointer animate__animated <%= animation%> <%= animationSpeed%>"
+            class="w-full h-9 md:h-12 EditButton relative items-center text-center MatrixTextEffectWhiteLow text-2xl cursor-pointer animate__animated animate__fadeIn animate__faster"
             style="animation-delay: <%= getDelay(animationDelay) %>ms"
             id="editExerciseButton"
           >
@@ -179,15 +184,13 @@ animationDelaySave; } %>
             <div class="flex gap-2">
               <button
                 type="button"
-                class="w-full h-9 md:h-12 EditButton relative items-center text-center MatrixTextEffectWhiteLow text-xl md:text-2xl cursor-pointer animate__animated <%= animation%> <%= animationSpeed%>"
-                style="animation-delay: <%= getDelay(animationDelay) %>ms"
+                class="w-full h-9 md:h-12 EditButton relative items-center text-center MatrixTextEffectWhiteLow text-xl md:text-2xl cursor-pointer animate__animated animate__fadeIn animate__faster"
                 id="formCancelButton"
               >
                 Cancel</button
               ><button
                 type="submit"
-                class="w-full h-9 md:h-12 MatrixBoxEffectWhiteLow relative items-center MediumTag text-center MatrixTextEffectWhiteLow text-xl md:text-2xl cursor-pointer animate__animated <%= animation%> <%= animationSpeed%>"
-                style="animation-delay: <%= getDelay(animationDelay) %>ms"
+                class="w-full h-9 md:h-12 MatrixBoxEffectWhiteLow relative items-center MediumTag text-center MatrixTextEffectWhiteLow text-xl md:text-2xl cursor-pointer animate__animated animate__fadeIn animate__faster"
               >
                 Edit Exercise
               </button>
@@ -287,14 +290,14 @@ animationDelaySave; } %>
             <div class="flex gap-2">
               <button
                 type="button"
-                class="w-full h-9 md:h-12 EditButton relative items-center text-center MatrixTextEffectWhiteLow text-xl md:text-2xl cursor-pointer animate__animated <%= animation%> <%= animationSpeed%>"
+                class="w-full h-9 md:h-12 EditButton relative items-center text-center MatrixTextEffectWhiteLow text-xl md:text-2xl cursor-pointer animate__animated animate__fadeIn animate__faster"
                 style="animation-delay: <%= getDelay(animationDelay) %>ms"
                 id="formCancelButton"
               >
                 Cancel</button
               ><button
                 type="submit"
-                class="w-full h-9 md:h-12 MatrixBoxEffectWhiteLow relative items-center MediumTag text-center MatrixTextEffectWhiteLow text-xl md:text-2xl cursor-pointer animate__animated <%= animation%> <%= animationSpeed%>"
+                class="w-full h-9 md:h-12 MatrixBoxEffectWhiteLow relative items-center MediumTag text-center MatrixTextEffectWhiteLow text-xl md:text-2xl cursor-pointer animate__animated animate__fadeIn animate__faster"
                 style="animation-delay: <%= getDelay(animationDelay) %>ms"
               >
                 Edit Exercise
@@ -306,139 +309,30 @@ animationDelaySave; } %>
         </div>
 
         <% if (!!prereqName) { %>
-        <a
-          class="flex MatrixBoxEffectGrey w-full bg-darkSurface-a30 bg-opacity-30 items-center cursor-pointer animate__animated <%= animation%> <%= animationSpeed%>"
-          style="animation-delay: <%= getDelay(animationDelay) %>ms"
-          href="/exercise/<%= prereqID %>"
-        >
-          <div
-            class="bg-black w-[35%] aspect-square bg-cover bg-center"
-            style="
-              background-image: url('<%= prereqImgUrl %>');
-              filter: grayscale(1) brightness(0.75);
-            "
-          ></div>
-          <div class="flex flex-col w-[65%] justify-center items-center">
-            <p class="MatrixTextEffectWhiteLow text-3xl">Prerequisite:</p>
+          <a
+            class="flex MatrixBoxEffectGrey w-full bg-darkSurface-a30 bg-opacity-30 items-center cursor-pointer animate__animated animate__fadeIn animate__faster"
+            style="animation-delay: <%= getDelay(animationDelay) %>ms"
+            href="/exercise/<%= prereqID %>"
+          >
+            <div
+              class="bg-black w-[35%] aspect-square bg-cover bg-center"
+              style="
+                background-image: url('<%= prereqImgUrl %>');
+                filter: grayscale(1) brightness(0.75);
+              "
+            ></div>
+            <div class="flex flex-col w-[65%] justify-center items-center">
+              <p class="MatrixTextEffectWhiteLow text-3xl">Prerequisite:</p>
 
-            <p class="MatrixTextEffectWhiteLow text-2xl"><%= prereqName %></p>
-          </div>
-        </a>
+              <p class="MatrixTextEffectWhiteLow text-2xl"><%= prereqName %></p>
+            </div>
+          </a>
         <% } %>
       </div>
     </div>
 
-    <script>
-      const deleteExerciseButton = document.getElementById(
-        "deleteExerciseButton"
-      );
-      const editExerciseButton = document.getElementById("editExerciseButton");
-      const formCancelButtons = document.querySelectorAll("#formCancelButton");
-      const blackScreen = document.getElementById("blackScreen");
-      const deleteForm = document.getElementById("deleteForm");
-      const editFormAuth = document.getElementById("editFormAuth");
-      const editForm = document.getElementById("editForm");
-
-      deleteExerciseButton.addEventListener("click", (e) => {
-        [blackScreen, deleteForm].forEach((x) => {
-          x.classList.add("animate__fadeIn");
-          x.classList.remove("animate__fadeOut", "hidden");
-        });
-      });
-
-      editExerciseButton.addEventListener("click", (e) => {
-        [blackScreen, editFormAuth].forEach((x) => {
-          x.classList.add("animate__fadeIn");
-          x.classList.remove("animate__fadeOut", "hidden");
-        });
-      });
-
-      [Array.from(formCancelButtons), blackScreen].flat().forEach((y) => {
-        y.addEventListener("click", (e) => {
-          [blackScreen, deleteForm, editFormAuth, editForm].forEach((x) => {
-            if (!x.classList.contains("hidden")) {
-              x.classList.add("animate__fadeOut");
-              x.classList.remove("animate__fadeIn");
-              x.addEventListener(
-                "animationend",
-                () => {
-                  x.classList.add("hidden");
-                },
-                { once: true }
-              );
-            }
-          });
-        });
-      });
-
-      // newExerciseScript
-      const inputs = document.querySelectorAll(".editInput");
-
-      inputs.forEach((input) => {
-        input.addEventListener("keyup", (e) => {
-          if (e.target.value !== "") {
-            e.target.classList.add("selectionHoverManual");
-          } else {
-            e.target.classList.remove("selectionHoverManual");
-          }
-        });
-      });
-
-      let checkedBoxesLen = document.querySelectorAll(
-        "input[type=checkbox]:checked"
-      ).length;
-      const checkedBoxesLis = document.querySelectorAll(".optionCheckBox");
-      checkedBoxesLis.forEach((li) => {
-        const input = li.querySelector("input");
-        const label = li.querySelector("label");
-        if (input.checked) label.classList.toggle("selectionHoverManual");
-        input.addEventListener("change", (e) => {
-          label.classList.toggle("selectionHoverManual");
-          checkedBoxesLen = document.querySelectorAll(
-            "input[type=checkbox]:checked"
-          ).length;
-        });
-      });
-
-      let radioChecked = true;
-      const radios = document.querySelectorAll(".optionRadio");
-      const resetRadioLabels = () => {
-        const ls = document.querySelectorAll(".optionRadio label");
-        ls.forEach((l) => l.classList.remove("selectionHoverManual"));
-      };
-      radios.forEach((li) => {
-        const input = li.querySelector("input");
-        const label = li.querySelector("label");
-
-        if (input.checked) label.classList.toggle("selectionHoverManual");
-
-        input.addEventListener("change", (e) => {
-          radioChecked = true;
-          input.checked = true;
-          resetRadioLabels();
-          label.classList.toggle("selectionHoverManual");
-        });
-      });
-
-      const form = document.getElementById("editForm");
-      form.addEventListener("submit", (e) => {
-        const descriptionInputLength = document.getElementById(
-          "exerciseDescription"
-        ).value.length;
-        if (!checkedBoxesLen) {
-          e.preventDefault();
-          alert("Select at least one category");
-        } else if (!radioChecked) {
-          e.preventDefault();
-          alert("Select a difficulty");
-        } else if (
-          descriptionInputLength < 64 &&
-          descriptionInputLength > 250
-        ) {
-          e.preventDefault();
-          alert("Description must be between 64 and 128 characters");
-        }
-      });
+    <script src="/js/exercise.js" defer>
+     
     </script>
   </body>
 </html>

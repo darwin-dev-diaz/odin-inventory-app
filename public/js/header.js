@@ -4,7 +4,7 @@ document.addEventListener("scroll", (e) => {
   else headerDiv.classList.remove("onScroll");
 });
 
-const headerIcons = document.querySelectorAll("a");
+const headerIcons = document.querySelectorAll(".headerIcon");
 headerIcons.forEach((icon) => {
   const name = icon.querySelector("div");
 

@@ -14,7 +14,6 @@ getDelay = (delay) => { animationDelaySave += delay; return animationDelaySave;
       @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
       body {
         background-color: #0f140f;
-        /* opacity: 0.25; */
         background-image: radial-gradient(#007a021a 1px, transparent 1px),
           radial-gradient(#007a021a 1px, #0f140f 1px);
         background-size: 10px 10px;
@@ -31,6 +30,7 @@ getDelay = (delay) => { animationDelaySave += delay; return animationDelaySave;
     >
       <!-- options -->
       <div class="max-w-72 md:max-w-96 mb-8 w-full flex flex-col gap-4 mx-auto">
+        <!-- search start -->
         <form
           class="w-full h-9 md:h-12 MatrixBoxEffectWhiteLow MatrixTextEffectWhiteLow relative flex selectionHoverLow transition"
           id="searchForm"
@@ -59,6 +59,7 @@ getDelay = (delay) => { animationDelaySave += delay; return animationDelaySave;
             </svg>
           </button>
         </form>
+        <!-- search end-->
 
         <!-- difficulty start -->
         <div
@@ -80,7 +81,12 @@ getDelay = (delay) => { animationDelaySave += delay; return animationDelaySave;
             />
           </svg>
         </div>
-        <form action="" class="hidden" id="difficulyForm">
+        <form
+          action="/exercises/"
+          method="GET"
+          class="hidden"
+          id="difficulyForm"
+        >
           <ul class="grid w-full gap-6 md:grid-cols-3">
             <% allDifficulties.map(difficulty => {%> <%-
             include('./components/optionCheckBox.ejs', {option: difficulty.name,
@@ -137,21 +143,24 @@ getDelay = (delay) => { animationDelaySave += delay; return animationDelaySave;
         </form>
         <!-- category end -->
       </div>
+
       <!-- exercises -->
       <div class="w-full mx-auto text-center">
         <h1
           class="text-3xl MatrixTextEffectLow <%= filterSettings ? '' : 'mb-8'%> md:text-4xl"
         >
           <%= filterPhrase%>
-          <span class="MatrixTextEffectWhiteLow"
-            >(<%= exercisesLength%> results)</span
-          >
+          <span class="MatrixTextEffectWhiteLow">
+            (<%= exercisesLength%> results)
+          </span>
         </h1>
+
         <%if (filterSettings){%>
         <h1 class="text-2xl MatrixTextEffectWhiteLow mb-8 md:text-3xl">
           <%= filterSettings%>
         </h1>
         <%}%>
+
         <div
           class="grid w-full grid-cols-2 gap-y-3 gap-x-3 max-w-[26.5rem] md:grid-cols-3 md:max-w-2xl mx-auto"
         >
@@ -163,39 +172,6 @@ getDelay = (delay) => { animationDelaySave += delay; return animationDelaySave;
       </div>
     </div>
 
-    <script defer>
-      const input = document.getElementById("searchInput");
-      const searchSvg = document.getElementById("searchSvg");
-      const searchForm = document.getElementById("searchForm");
-      input.addEventListener("keyup", (e) => {
-        if (e.target.value !== "") {
-          searchSvg.classList.add("blink");
-          searchForm.classList.add("selectionHoverManual");
-        } else {
-          searchForm.classList.remove("selectionHoverManual");
-          searchSvg.classList.remove("blink");
-        }
-      });
-
-      const lis = document.querySelectorAll("li");
-      lis.forEach((li) => {
-        const input = li.querySelector("input");
-        const label = li.querySelector("label");
-
-        input.addEventListener("change", (e) => {
-          label.classList.toggle("selectionHoverManual");
-        });
-      });
-
-      const toggleDifficultiesForm = () => {
-        const form = document.getElementById("difficulyForm");
-        form.classList.toggle("hidden");
-      };
-
-      const toggleCategoryForm = () => {
-        const form = document.getElementById("categoryForm");
-        form.classList.toggle("hidden");
-      };
-    </script>
+    <script src="/js/exercises.js" defer></script>
   </body>
 </html>
