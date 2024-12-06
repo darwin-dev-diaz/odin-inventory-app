@@ -1,7 +1,11 @@
-<% const animation = "animate__fadeIn" %> <% const animationSpeed =
-"animate__faster" %> <% const animationDelay = 75 %> <% let animationDelaySave =
-0 %> <% const getDelay = (delay) => { animationDelaySave += delay; return
-animationDelaySave; } %>
+<% const animation = "animate__fadeIn"; %> 
+<% const animationSpeed = "animate__faster"; %> 
+<% const animationDelay = 50; %> 
+<% let animationDelaySave = 0; %> 
+<% const getDelay = (delay) => { 
+     animationDelaySave += delay; 
+     return animationDelaySave; 
+}; %> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,11 +44,11 @@ animationDelaySave; } %>
         Tools I used to make this website:
       </h1>
       <div
-        class="grid grid-cols-1 w-full gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+        class="grid grid-cols-1 w-full gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 animate"
       >
         <%tools.map(tool=>{%> <%-include('./components/aboutPageComponent.ejs',
         {imageUrl: tool.icon, name: tool.name, description: tool.description,
-        link: tool.link}) %> <%})%>
+        link: tool.link, delay: getDelay(animationDelay)}) %> <%})%>
       </div>
     </div>
   </body>
