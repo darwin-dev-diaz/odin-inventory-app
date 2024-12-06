@@ -32,11 +32,19 @@ animationDelaySave; } %>
   <body class="">
     <%- include('./components/header.ejs') %>
     <div
-      class="CONTENT z-40 p-[1.75rem] flex flex-col justify-center items-center mx-auto px-5 max-w-xl md:max-w-4xl lg:max-w-5xl md: gap-8 md:items-start md:grid md:grid-cols-2"
+      class="CONTENT z-40 p-[1.75rem] flex flex-col justify-center items-center mx-auto px-5 max-w-xl md:max-w-4xl lg:max-w-5xl md:gap-8 md:items-start"
     >
-      <h1>Tools use to make this website:</h1>
-      <div class="grid grid-cols-2">
-        <%-include('./components/aboutPageComponent.ejs') %>
+      <h1
+        class="text-4xl text-center mb-6 md:mb-3 lg:mb-2 MatrixTextEffectWhiteLow"
+      >
+        Tools I used to make this website:
+      </h1>
+      <div
+        class="grid grid-cols-1 w-full gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+      >
+        <%tools.map(tool=>{%> <%-include('./components/aboutPageComponent.ejs',
+        {imageUrl: tool.icon, name: tool.name, description: tool.description,
+        link: tool.link}) %> <%})%>
       </div>
     </div>
   </body>
