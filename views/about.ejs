@@ -33,6 +33,11 @@ animationDelaySave; } %>
     <%- include('./components/header.ejs') %>
     <div
       class="CONTENT z-40 p-[1.75rem] flex flex-col justify-center items-center mx-auto px-5 max-w-xl md:max-w-4xl lg:max-w-5xl md: gap-8 md:items-start md:grid md:grid-cols-2"
-    ></div>
+    >
+      <h1>Tools use to make this website:</h1>
+      <div class="grid grid-cols-2">
+        <%-include('./components/aboutPageComponent.ejs') %>
+      </div>
+    </div>
   </body>
 </html>
