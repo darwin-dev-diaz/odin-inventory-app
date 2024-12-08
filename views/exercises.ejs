@@ -89,7 +89,7 @@ getDelay = (delay) => { animationDelaySave += delay; return animationDelaySave;
         >
           <ul class="grid w-full gap-6 md:grid-cols-3">
             <% allDifficulties.map(difficulty => {%> <%-
-            include('./components/optionCheckBox.ejs', {option: difficulty.name,
+            include('./components/optionCheckbox.ejs', {option: difficulty.name,
             value: difficulty.id, filterType: "difficulty", checked: false}) %>
             <%})%>
             <button
