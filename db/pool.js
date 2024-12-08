@@ -1,13 +1,11 @@
 const { Pool } = require("pg");
 require("dotenv").config();
 
-// if the DATABASE_URL file exists, that means the we are in railway. So use the railway db
-// if not, we are in my PC so use the local db
 const pool = process.env.DATABASE_URL
   ? new Pool({
       connectionString: process.env.DATABASE_URL,
       ssl: {
-        rejectUnauthorized: false,
+        rejectUnauthorized: false, 
       },
     })
   : new Pool({
