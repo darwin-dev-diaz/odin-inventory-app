@@ -50,7 +50,6 @@ const getExercises = asyncHandler(async (req, res) => {
   await applyFilters();
 
   const { allDifficulties, allCategories } = await getAllDiffsAndCats();
-  console.log(exercises);
 
   res.render("exercises", {
     exercises,

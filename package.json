@@ -6,8 +6,9 @@
   "scripts": {
     "build:css": "npx tailwindcss -i ./public/css/index.css -o ./public/css/output.css --watch",
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "",
+    "preview": "vite preview",
+    "start": "node app.js"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",

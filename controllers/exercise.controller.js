@@ -78,7 +78,6 @@ const postEditExercise = asyncHandler(async (req, res) => {
     await query.editExercise(req.body);
     res.redirect("./");
   } else {
-    console.log("wrong password");
     res.redirect("./?error=1");
   }
 });
