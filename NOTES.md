@@ -95,7 +95,8 @@ TODO:
 great job so far
 
 [x] - create about page
-[]- create 404 page
-[] - polish
+[x]- create 404 page
+[x] - polish
 [] - start using the railway database
+[x] - move db to railway 
 [] - upload
