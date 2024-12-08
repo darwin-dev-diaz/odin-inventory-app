@@ -75,7 +75,7 @@ animationDelaySave;}; %>
           </h3>
           <ul class="grid w-full gap-6 md:grid-cols-2">
             <% allCategories.map(category =>{ %> <%-
-            include('./components/optionCheckBox.ejs', {option: category.name,
+            include('./components/optionCheckbox.ejs', {option: category.name,
             value: category.id, filterType: "category", checked: false}) %>
             <%})%>
           </ul>
