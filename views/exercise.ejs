@@ -11,7 +11,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/output.css" />
-
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <title><%= name %> | Calisthenics Matrix</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
@@ -246,7 +246,7 @@
               </h3>
               <ul class="grid w-full gap-6 md:grid-cols-2">
                 <% allCategories.map((category) =>{ %>
-                <%-include('./components/optionCheckBox.ejs', {option:
+                <%-include('./components/optionCheckbox.ejs', {option:
                 category.name, value: category.id, filterType: "category",
                 checked: categories.includes(category.name)}) %> <%})%>
               </ul>
