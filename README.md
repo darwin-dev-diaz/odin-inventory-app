@@ -1,6 +1,6 @@
 # Live Demo
 
-🚀 **Experience the app live**: [Calisthenics Matrix](odin-inventory-app-production-c0c1.up.railway.app/)
+🚀 **Experience the app live**: [Calisthenics Matrix](https://odin-inventory-app-production-c0c1.up.railway.app/)
 
 Click the link above to explore the full functionality of the app, including exercise browsing, exercise progression planning, and more!
 
@@ -10,6 +10,8 @@ Click the link above to explore the full functionality of the app, including exe
 This project was built as part of [The Odin Project](https://www.theodinproject.com/) curriculum and demonstrates core skills in backend, frontend, and database management.
 
 ![App Screenshot](./public/images/screenshots/screenshot-1.png "App Screenshot")
+
+![App Screenshot 2](./public/images/screenshots/screenshot-6.png "App Screenshot")
 
 ---
 

@@ -97,6 +97,6 @@ great job so far
 [x] - create about page
 [x]- create 404 page
 [x] - polish
-[] - start using the railway database
+[x] - start using the railway database
 [x] - move db to railway 
-[] - upload
+[x] - upload
